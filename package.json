@@ -10,10 +10,17 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.5",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "primereact": "^10.6.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-scripts": "5.0.0"
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.25.1",
+    "react-scripts": "5.0.0",
+    "styled-components": "^6.1.12"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
