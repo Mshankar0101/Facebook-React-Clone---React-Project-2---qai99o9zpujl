@@ -1,0 +1,136 @@
+.header{
+    width: 100%;
+    height: 56px;
+    background-color: #fff;
+    padding: 0px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.logo-search{
+    width: 100%;
+    max-width: 305px;
+    min-width: 100px;
+    /* padding-right: 15px; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+}
+.search-feild-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 360px;
+    height: 205px;
+    padding: 8px 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    
+}
+.search-feild-container > div:first-child{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+
+}
+.search-feild-container .back-icon{
+    width: 24px;
+    height: 24px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #65676b;
+}
+.search-feild-container .back-icon:hover{
+    background-color: #f0f2f5;
+}
+.header-middle{
+    width: 100%;
+    max-width: 450px;
+    min-width: 200px;
+    height: 56px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* overflow: hidden; */
+}
+.header-middle > div{
+   width: 100%;
+   max-width: 120px;
+   min-width: 50px;
+   height: 56px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.header-icons{
+    width: 24px;
+    height: 24px;
+    color: #65676b;
+   
+}
+.header-right{
+    width: 100%;
+    max-width: 184px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.header-right-circular{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f2f5;
+    display: grid;
+    place-items: center;
+}
+
+.MuiTooltip-tooltip{
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* daek mode */
+.dark-text{
+    /* color: #f0f2f5; */
+    color: #fff;
+}
+.dark-background{
+     background-color: rgb(50,52,54) !important;
+    
+     /* background-color: rgb(171, 175, 179); */
+    /* background-color: #2b2b2b; */
+    
+}
+.dark-background-popup{
+    background-color: #222527 !important;
+}
+.dark-parent{
+    background-color: #18191A !important;
+    
+}
+
+@media only screen and (max-width:900px){
+    .logo-search{
+        width: 100px;
+    }
+}
