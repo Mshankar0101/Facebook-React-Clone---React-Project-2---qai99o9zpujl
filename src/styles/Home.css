@@ -2,8 +2,255 @@
    margin: 0px;
    background-color: #f0f2f5;
    width: 100%;
-  
+   display: flex;
+   justify-content: center;
+   max-width: 1700px;
 }
-.facebook-home-page h1{
+.home-left-container{
+    width: 100%;
+    overflow-y: scroll;
+    max-width: 302px;
+    min-width: 280px;
+    padding: 16px 8px;
+    box-sizing: border-box;
+    /* firefox */
+    /* scrollbar-width: thin;
+    scrollbar-color: #b3bdcc #f0f2f5; */
+}
+.home-left-container::-webkit-scrollbar{
+    width: 8px;
+}
+.home-left-container::-webkit-scrollbar-track{
+    background-color: #f0f2f5;
+}
+.home-left-container::-webkit-scrollbar-thumb{
+    background-color: #b3bdcc;
+    border-radius: 10px;
+}
+.home-middle-container{
+    width: 100%;
+    max-width: 745px;
+    min-width: 525px;
+    padding: 0px 32px;
+    box-sizing: border-box;
+}
+.home-right-container{
+    width: 100%;
+    max-width: 302px;
+    min-width: 280px;
+    padding: 0px 8px;
+    box-sizing: border-box;
+}
+
+
+
+/* left section style */
+.home-left-container >div:not(:last-child){
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 44px;
+    padding-left: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.dark-mode-hover >div:not(:last-child):hover, .see-more:hover, .see-less:hover{
+    background-color: rgb(50,52,54) !important;
+}
+.dark-mode-hover::-webkit-scrollbar-track{
+    background-color: #18191A !important;
+}
+.dark-mode-hover::-webkit-scrollbar-thumb{
+    background-color: rgb(50,52,54) !important;
+}
+.home-left-container > div:not(:last-child):hover, .see-more:hover, .see-less:hover{
+    background-color: #e0e4eb;
+}
+.home-left-container >div p{
     margin: 0px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #050505;
 }
+.home-left-container .profile, .see-more div, .see-less div{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.1);
+}
+.dark-mode-hover .see-more div, .dark-mode-hover .see-less div{
+    background-color: #b3bdcc !important;
+}
+.home-left-container .icon{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon1{
+    background-position: 0 -111px;
+}
+.home-left-container .icon2{
+    background-position: 0 -259px;
+}
+.home-left-container .icon3{
+    background-position: 0 -370px;
+}
+.home-left-container .icon4{
+    background-position: 0 -37px;
+}
+.home-left-container .icon5{
+    background-position: 0 -481px;
+}
+/* .home-left-container .icon6{
+
+} */
+
+
+
+.expended-div > div, .see-more{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 44px;
+    padding-left: 10px;
+    border-radius: 10px;
+    cursor:not-allowed;
+}
+.expended-div > div:hover{
+    background-color: #e0e4eb;
+}
+.expended-div >div >p, .see-more p{
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #050505;
+}
+
+.see-more div, .see-less div{
+    display: grid;
+    place-items: center;
+}
+.home-left-container .icon6{
+    background-position: 0 -148px;
+}
+.home-left-container .icon7{
+    background-position: 0 -407px;
+}
+.home-left-container .icon8{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/ATlxuj_J5ty.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon9{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/Jr0q8qKF2-Y.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon10{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yV/r/vTDQ3deAsEh.png'); 
+    background-repeat: no-repeat;
+    background-position: 0 -37px;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon11{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/GJ4EaivDaSj.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon12{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/eECk3ceTaHJ.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon13{
+    background-position: 0 -296px;
+}
+.home-left-container .icon14{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yJ/r/fGWbDwbx9W4.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon15{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/FiY1CqyQMqw.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon16{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/6Z9DShdc7zU.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.home-left-container .icon17{
+    background-position: 0 -74px;
+}
+.home-left-container .icon18{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/x2_LFd7gCqg.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+
+.home-left-container .bottom-text{
+   padding: 16px 8px;
+}
+.home-left-container .bottom-text p{
+   margin: 0px;
+   color: #656768;
+   line-height: 1.3;
+   font-size: 12.5px;
+   font-weight: 400;
+}
+
+
+/* middle section style */
+.home-middle-container .story-posts{
+   width: 100%;
+   max-width: 590px;
+   min-width: 460px;
+   margin: 0px auto;
+}
+.home-middle-container .story{
+    width: 100%;
+    max-width: 590px;
+    min-width: 460px;
+}
+.home-middle-container .posts{
+    width: 100%;
+    max-width: 500px;
+    min-width: 460px;
+}
+
+/* right section style */
