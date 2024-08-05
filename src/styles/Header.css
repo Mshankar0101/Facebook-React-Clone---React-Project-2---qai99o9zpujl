@@ -119,7 +119,7 @@
 /* daek mode */
 .dark-text{
     /* color: #f0f2f5; */
-    color: #fff;
+    color: #fff !important;
 }
 .dark-background{
      background-color: rgb(50,52,54) !important;

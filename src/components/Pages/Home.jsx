@@ -3,6 +3,8 @@ import '../../styles/Home.css';
 import {GlobalContext} from '../contexts/Contexts';
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import {useNavigate} from 'react-router-dom';
+import prime from '../images/prime.webp';
+import adstwo from '../images/adstwo.jpg';
 
 const Home = () => {
   const [seeMore, setSeeMore]= useState(true);
@@ -132,7 +134,27 @@ const Home = () => {
          </div>
       </div> 
        <div className='home-right-container'>
-
+          <p>Sponsored</p>
+          <div className={darkMode? 'dark-text ads-description':'ads-description'}>
+            <img src={adstwo} alt='ads'/>
+            <div >
+               <p>Learn Hypnosis in just <b>1 month</b></p>
+               <a href='exly.co.in'>exly.co.in/learnhypnosis</a>
+            </div>
+          </div>
+          <div style={{borderBottom: '1px solid rgb(97, 100, 102, 0.5)'}} className={darkMode? 'dark-text ads-description':'ads-description'}>
+            <img src={prime} alt='ads'/>
+            <div >
+               <p>Join Prime and Get ads free subscription just at <b>₹1499</b> for <b>12 months.</b> </p>
+               <a href='https://www.primevideo.com/offers/nonprimehomepage/ref=dv_web_force_root'>https://www.primevideo.com</a>
+            </div>
+          </div>
+          <p>Birthdays</p>
+          <div className={darkMode? 'dark-text birthday-notification':'birthday-notification'}>
+            {/* <img src='	https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/jGIHAYEO3Pc.png' alt='icon'/> */}
+            <div></div>
+            <p><b>Madhu Shankar</b> and <b>7 others</b> have birthdays today</p>
+          </div>
       </div> 
     </div>
   )
