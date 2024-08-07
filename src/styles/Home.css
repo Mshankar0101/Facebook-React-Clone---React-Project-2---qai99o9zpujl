@@ -1,5 +1,5 @@
 .facebook-home-page{
-   margin: 0px;
+   margin: 0px auto;
    background-color: #f0f2f5;
    width: 100%;
    display: flex;
@@ -80,6 +80,12 @@
     border-radius: 50%;
     background-color: rgba(0,0,0,0.1);
 }
+.home-left-container .profile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 .dark-mode-hover .see-more div, .dark-mode-hover .see-less div{
     background-color: #b3bdcc !important;
 }
@@ -106,11 +112,6 @@
 .home-left-container .icon5{
     background-position: 0 -481px;
 }
-/* .home-left-container .icon6{
-
-} */
-
-
 
 .expended-div > div, .see-more{
     display: flex;
@@ -235,6 +236,8 @@
 }
 
 
+
+
 /* middle section style */
 .home-middle-container .story-posts{
    width: 100%;
@@ -243,6 +246,7 @@
    margin: 0px auto;
 }
 .home-middle-container .story{
+    position: relative;
     width: 100%;
     max-width: 590px;
     min-width: 460px;
@@ -252,6 +256,8 @@
     max-width: 500px;
     min-width: 460px;
 }
+
+
 
 /* right section style */
 .home-right-container > p{
@@ -263,8 +269,6 @@
 }
  .ads-description{
    width:100%;
-   /* max-width: 280px;
-   min-width: 260px; */
    display: flex;
    align-items:flex-start;
    justify-content: center;
@@ -316,4 +320,26 @@
     margin: 0px;
     font-size: 14px;
     font-weight: 400;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width:600px){
+    .home-middle-container{
+        min-width: unset;
+        padding: 0px 0px;
+    }
+    .home-middle-container .story-posts{
+        min-width:unset;
+     }
+     .home-middle-container .story{
+        min-width:unset;
+     }
+     .home-middle-container .posts{
+        min-width:unset;
+     }
 }

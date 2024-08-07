@@ -8,6 +8,7 @@ import { GlobalContext } from './contexts/Contexts';
 import { TbFlag3 , TbFlag3Filled} from "react-icons/tb";
 import Tooltip from '@mui/material/Tooltip';
 import { NavLink, useLocation } from 'react-router-dom';
+import profile from '../components/images/profile.jpg'
 
 
 
@@ -60,6 +61,7 @@ const Header = () => {
     } 
 
 
+    let profilePic;
 
   return (
     <div className={darkMode?'header dark-parent':'header'}>
@@ -222,7 +224,7 @@ const Header = () => {
             </Tooltip>
             <Tooltip title="Account">
                 <div onClick={()=>handleIconsClick("account")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
-                    <img alt='profile' src='/' />
+                    <img alt='profile' src={profilePic? profilePic: profile} />
                 </div>
             </Tooltip>
 

@@ -5,19 +5,25 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import {useNavigate} from 'react-router-dom';
 import prime from '../images/prime.webp';
 import adstwo from '../images/adstwo.jpg';
+import Story from './Story';
+import profile from '../images/profile.jpg';
+import CreatePost from './CreatePost';
 
 const Home = () => {
   const [seeMore, setSeeMore]= useState(true);
   const {resolution, darkMode} = useContext(GlobalContext);
   const navigate = useNavigate();
 
+
+  let profilePic;
+
   return (
     <div className={darkMode?'dark-parent facebook-home-page':'facebook-home-page'}>
       
-       <div style={{height:`${resolution.height-56}px`}} className={darkMode?'dark-mode-hover home-left-container': 'home-left-container'}>
+       <div style={{height:`${resolution.height-56}px`, display:(resolution.width < 1100? 'none':'block')}} className={darkMode?'dark-mode-hover home-left-container': 'home-left-container'}>
           <div>
             <div className='profile'>
-
+                <img alt='profile' src={profilePic? profilePic:profile} />
             </div>
             <p style={{color:(darkMode? '#fff':'#050505')}}>Madhu shankar</p>
           </div>
@@ -125,15 +131,15 @@ const Home = () => {
        <div className='home-middle-container'>
          <div className='story-posts'>
               <div className='story'>
-
+                 <Story/>
               </div>
-              {/* call here create post component */}
+              <CreatePost/>
               <div className='posts'>
 
               </div>
          </div>
       </div> 
-       <div className='home-right-container'>
+       <div style={{display:(resolution.width < 900? 'none':'block')}} className='home-right-container'>
           <p>Sponsored</p>
           <div className={darkMode? 'dark-text ads-description':'ads-description'}>
             <img src={adstwo} alt='ads'/>

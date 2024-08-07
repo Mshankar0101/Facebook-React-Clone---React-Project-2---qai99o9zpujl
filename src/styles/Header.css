@@ -106,6 +106,12 @@
     display: grid;
     place-items: center;
 }
+.header-right-circular img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
 .MuiTooltip-tooltip{
     height: 23px;
@@ -123,7 +129,7 @@
 }
 .dark-background{
      background-color: rgb(50,52,54) !important;
-    
+     /* background-color: rgb(80, 86, 92); */
      /* background-color: rgb(171, 175, 179); */
     /* background-color: #2b2b2b; */
     
