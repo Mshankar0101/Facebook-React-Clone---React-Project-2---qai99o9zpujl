@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GlobalContext } from './Contexts';
 
 const GlobalContextProvider = ({children}) => {
-  const [darkMode, setDarkMode]= useState(false);
+  const [darkMode, setDarkMode]= useState(false); 
   const [resolution, setResolution] = useState({ width: window.innerWidth, height: window.innerHeight });
   useEffect(() => {
     const handleResize = () => {

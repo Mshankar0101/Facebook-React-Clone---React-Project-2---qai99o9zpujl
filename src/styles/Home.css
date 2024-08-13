@@ -33,6 +33,11 @@
     min-width: 525px;
     padding: 0px 32px;
     box-sizing: border-box;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.home-middle-container::-webkit-scrollbar{
+    display: none;
 }
 .home-right-container{
     width: 100%;
@@ -255,6 +260,7 @@
     width: 100%;
     max-width: 500px;
     min-width: 460px;
+    margin: 16px auto;
 }
 
 

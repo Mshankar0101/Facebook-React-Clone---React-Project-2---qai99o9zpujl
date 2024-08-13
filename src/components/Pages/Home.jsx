@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react';
+import React,{useContext, useEffect, useState} from 'react';
 import '../../styles/Home.css';
 import {GlobalContext} from '../contexts/Contexts';
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
@@ -8,6 +8,7 @@ import adstwo from '../images/adstwo.jpg';
 import Story from './Story';
 import profile from '../images/profile.jpg';
 import CreatePost from './CreatePost';
+import Posts from './Posts';
 
 const Home = () => {
   const [seeMore, setSeeMore]= useState(true);
@@ -15,8 +16,33 @@ const Home = () => {
   const navigate = useNavigate();
 
 
-  let profilePic;
+  //   post rendering logic
+   const [posts, setPosts] = useState([]);
+   const fetchPosts = ()=>{
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        
+        const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+        };
+        
+        fetch("https://academics.newtonschool.co/api/v1/facebook/post?limit=100", requestOptions)
+        .then((response) => response.text())
+        .then((result) =>{
+            const newResult = JSON.parse(result);
+            console.log(newResult.data);
+            setPosts(newResult.data);
+        })
+        .catch((error) => console.error(error));
+   }
 
+   useEffect(()=>{
+    fetchPosts();
+   },[])
+
+  let profilePic;
   return (
     <div className={darkMode?'dark-parent facebook-home-page':'facebook-home-page'}>
       
@@ -128,14 +154,21 @@ const Home = () => {
           </div>
           
        </div> 
-       <div className='home-middle-container'>
-         <div className='story-posts'>
+       <div style={{height:(resolution.width > 900?`${resolution.height-56}px`:`unset`)}} className='home-middle-container'>
+         <div  className='story-posts'>
               <div className='story'>
                  <Story/>
               </div>
               <CreatePost/>
               <div className='posts'>
+                {posts.map((postData,i)=>{   
+                    if(postData.images[0] && postData.author.profileImage !== null){
+                        return <Posts key={i} post={postData} />
+                    }
+                    return null;
+                })
 
+                }
               </div>
          </div>
       </div> 

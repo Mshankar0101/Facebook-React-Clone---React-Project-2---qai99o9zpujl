@@ -1,43 +1,182 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 import '../../styles/CreatePost.css';
 import { GlobalContext } from '../contexts/Contexts';
 import profile from '../images/profile.jpg';
-import { HiVideoCamera } from "react-icons/hi2";
-import { MdPhotoLibrary } from "react-icons/md";
-import { BiHappy } from "react-icons/bi";
+import { Modal } from '@mui/material';
+import { RxCross2 } from "react-icons/rx";
+import { MdPublic } from "react-icons/md";
 
 const CreatePost = () => {
-    const {darkMode} = useContext(GlobalContext);
-    const [modalOpen, setModalOpen]= useState(false);
+    const { darkMode } = useContext(GlobalContext);
+
+    // create post modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleClose = () => setModalOpen(false);
+    const handleOpen = () => setModalOpen(true);
+
+    // handling image upload
+    const fileInputRef = useRef(null);
+    const [image, setImage] = useState('');
+    const [file, setFile] = useState([]);
+
+    function previewImage(file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onloadend = () => {
+            setImage(reader.result);
+        }
+
+    }
+
+    function handleImageChange(e) {
+        console.log(e.target.files);
+        const file = e.target.files[0];
+        setFile(e.target.files ?? []);
+        previewImage(file);
+
+    }
+    const removeCurrentImage = () => {
+        setImage('');
+        setFile([]);
+        fileInputRef.current ? fileInputRef.current.value = '' : null;
+    }
+
+
+    // creat post request
+    const [content, setContent] = useState('');
+    const handlePostSubmission = () => {
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        // myHeaders.append("Authorization", `Bearer ${user.token}`);
+        myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTYyMWQyYTA2ZjFjNjkwYzYzZGQ3MCIsImlhdCI6MTcyMjE2MzY2NiwiZXhwIjoxNzUzNjk5NjY2fQ.C6Lpp1Q5pFwzpj1jjzx4_GWEoBt1x75MDVT9YKgaxrg");
+
+        const formdata = new FormData();
+        formdata.append("title", "newton");
+        formdata.append("content", content);
+        formdata.append("images", file[0], "abc-abc.jpg");
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata,
+        };
+
+        fetch("https://academics.newtonschool.co/api/v1/facebook/post/", requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((result) => {
+                console.log(result);
+                alert('Created Post Successfully!');
+                handleClose();
+            })
+            .catch((error) => {
+                console.error("Error:", error.message);
+                alert(`An error occurred: ${error.message}`);
+            });
+        // .then((response) => response.json())
+        // .then((result) => {
+        //     // console.log(result.data);
+        //     console.log(result);
+        //     // alert('Created Post Sucessfully!');
+        //     handleClose();
+        // })
+        // .catch((error) =>{
+        //     alert(error.message);
+        //     console.log("error",error);
+        // });
+    }
+
+
+    useEffect(() => {
+        // console.log();
+    }, [])
+
+
 
     let profilePic;
-  return (
-    <div className={darkMode?'dark-background create-post-container': 'create-post-container'}>
-         <div>
-             <div>
-                <img alt='profile' src={profilePic? profilePic: profile}/>
-             </div>
-             <div onClick={()=>setModalOpen(true)} style={{backgroundColor:(darkMode?'rgb(80, 86, 92)':'#f0f2f5')}} >
-                <p>{"What's on your mind, ...? " }</p>
-             </div>
-         </div>
-         <div className={darkMode?'dark-text create-post-second-div':'create-post-second-div'}>
-            <div>
-                <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yr/r/c0dWho49-X3.png' alt='live vedio'/>
-                <p>Live vedio</p>
+    return (
+        <div className={darkMode ? 'dark-background create-post-container' : 'create-post-container'}>
+            <div >
+                <div>
+                    <img alt='profile' src={profilePic ? profilePic : profile} />
+                </div>
+                <div className='createpost-input-div' onClick={handleOpen} style={{ backgroundColor: (darkMode ? 'rgb(80, 86, 92)' : '#f0f2f5') }} >
+                    <p>{"What's on your mind, ...? "}</p>
+                </div>
             </div>
-            <div>
-                <img src='https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/Ivw7nhRtXyo.png' alt='gallery'/>
-                <p>Photo/vedio</p> 
-            </div>
-            <div>
-                <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Y4mYLVOhTwq.png' alt='feeling'/>
-                <p>Feeling/activity</p>
-            </div>
+            <div className={darkMode ? 'dark-text create-post-second-div' : 'create-post-second-div'}>
+                <div onClick={handleOpen}>
+                    <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yr/r/c0dWho49-X3.png' alt='live vedio' />
+                    <p>Live vedio</p>
+                </div>
+                <div onClick={handleOpen}>
+                    <img src='https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/Ivw7nhRtXyo.png' alt='gallery' />
+                    <p>Photo/vedio</p>
+                </div>
+                <div onClick={handleOpen}>
+                    <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Y4mYLVOhTwq.png' alt='feeling' />
+                    <p>Feeling/activity</p>
+                </div>
 
-         </div>
-    </div>
-  )
+            </div>
+            {
+                modalOpen &&
+                <Modal
+                    open={modalOpen}
+                    onClose={handleClose}
+                >
+                    <div className={darkMode ? 'dark-background-popup modal-create-post' : 'modal-create-post'}>
+                        <div className={darkMode ? 'dark-text heading' : 'heading'}>
+                            <p>Create post</p>
+                            <div onClick={handleClose}>
+                                <RxCross2 className={darkMode ? 'dark-text cross-icon' : 'cross-icon'} />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <img alt='profile' src={profilePic ? profilePic : profile} />
+                            </div>
+                            <div>
+                                <p>Madhu Shankar</p>
+                                <div>
+                                    <MdPublic style={{ marginRight: '5px' }} />
+                                    <p>Public</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='create-post-textbox' >
+                            <textarea autoFocus onChange={(e) => setContent(e.target.value)} className={darkMode ? 'dark-text dark-background-popup' : ''} placeholder={"What's on your mind, ...?"}  ></textarea>
+                        </div>
+                        <div style={{ display: (!image ? 'none' : 'block') }} className='post-uploaded-img'>
+                            <img src={image} alt='post img' />
+                            <div onClick={removeCurrentImage}>
+                                <RxCross2 className={darkMode ? 'dark-text cross-icon' : 'cross-icon'} />
+                            </div>
+                        </div>
+                        <div className='post-upload-image'>
+                            <input ref={fileInputRef} type='file' id='upload-image' onChange={handleImageChange} accept='image/*' />
+                            <div>
+                                <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/b37mHA1PjfK.png' alt='tag friends' />
+                                <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Y4mYLVOhTwq.png' alt='feeling' />
+                                <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yT/r/q7MiRkL7MLC.png' alt='gif' />
+                            </div>
+
+                        </div>
+                        <div className='submit-post'>
+                            <button disabled={content === '' && file.length === 0} onClick={handlePostSubmission}>Post</button>
+                        </div>
+
+                    </div>
+
+                </Modal>
+            }
+        </div>
+    )
 }
 
 export default CreatePost
