@@ -243,6 +243,7 @@
     height: auto;
     padding: 8px 12px;
     border-radius: 20px;
+    margin-bottom: 5px;
 }
 .post-comment-modal .all-comments p:first-of-type{
     margin: 0px;

@@ -13,21 +13,141 @@ import { PiShareFatLight } from "react-icons/pi";
 import { Modal, TextField, InputAdornment } from '@mui/material';
 import { IoMdSend } from "react-icons/io";
 
-const Posts = ({post}) => {
-    const {darkMode}= useContext(GlobalContext);
+const Posts = ({post, fetchPosts}) => {
+    const {darkMode, user, likedPosts, setLikedPosts}= useContext(GlobalContext);
+
     const [openModal, setOpenModal]= useState(false);
     const handleClose = ()=> setOpenModal(false);
+
+    // get all comments on a post
+    const [postsComments, setPostsComments] = useState([]);
+    const getAllComments = ()=>{
+        // console.log(postId)
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        myHeaders.append("Authorization", `Bearer ${user.token}`);
+
+        const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        };
+
+        fetch(`https://academics.newtonschool.co/api/v1/facebook/post/${post._id}/comments`, requestOptions)
+        .then((response) => response.text())
+        .then((result) =>{
+            const newResult = JSON.parse(result);
+            console.log("comments", newResult.data);
+            setPostsComments(newResult.data);
+        })
+        .catch((error) => console.error(error));
+    }
+
+     const showComments = ()=>{
+        setOpenModal(true);
+        getAllComments();
+     }
 
 
     // handling post comment
     const [comment, setComment] = useState('');
     const handePostComment = ()=>{
+        if(comment !== ''){
+            const myHeaders = new Headers();
+            myHeaders.append("projectID", "ktu17k7gadkn");
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", `Bearer ${user.token}`);
 
+            const raw = JSON.stringify({
+            "content": comment
+            });
+
+            const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            
+            };
+
+            fetch(`https://academics.newtonschool.co/api/v1/facebook/comment/${post._id}`, requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((result) => {
+                console.log(result);
+                getAllComments();
+                setComment('');
+                fetchPosts();
+            })
+            .catch((error) => console.error(error));
+        }
     }
 
-     useEffect(()=>{
-        // console.log(_id, author, content, images, createdAt, likeCount, commentCount)
-     })
+
+    // handling like and unlike
+    
+    // const [isLiked,setIsLiked]= useState(false);
+    // useEffect(()=>{
+    //    // console.log(_id, author, content, images, createdAt, likeCount, commentCount)
+    //    setIsLiked(likedPostsArr.includes(post._id));
+       
+    // },[])
+    const handleLikes = ()=>{
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        myHeaders.append("Authorization", `Bearer ${user.token}`);
+
+
+        const postId = post._id;
+        let likedPostsArr = JSON.parse(localStorage.getItem("likedPosts")) || [];
+        console.log(likedPostsArr);
+
+        if(likedPostsArr.includes(postId)){
+            const requestOptions = {
+                method: "DELETE",
+                headers: myHeaders,
+                };
+    
+                fetch(`https://academics.newtonschool.co/api/v1/facebook/like/${postId}`, requestOptions)
+                .then((response) => response.text())
+                .then((result) =>{
+                    console.log(result);
+                    
+                    let filteredLikedPosts = likedPostsArr.filter(id => id !== postId);
+                    let jsonString = JSON.stringify(filteredLikedPosts);
+                    localStorage.setItem("likedPosts", jsonString);
+                    setLikedPosts(jsonString);
+                    fetchPosts();
+                    console.log("unliked sucessfully",jsonString);
+                })
+                .catch((error) => console.error(error));
+
+
+        }else{
+            const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            };
+
+            fetch(`https://academics.newtonschool.co/api/v1/facebook/like/${postId}`, requestOptions)
+            .then((response) => response.text())
+            .then((result) =>{
+                console.log(result);
+                likedPostsArr.push(postId);
+                let jsonString = JSON.stringify(likedPostsArr);
+                localStorage.setItem("likedPosts", jsonString);
+                setLikedPosts(likedPostsArr);
+                fetchPosts();
+
+                console.log("liked sucessfully",jsonString)
+            })
+            .catch((error) => console.error(error));
+        }
+    }
+
+
 
     let profilePic;
   return (
@@ -65,15 +185,20 @@ const Posts = ({post}) => {
                 </div>
              </div>
              <div>
-                <div>
-                    <AiOutlineLike className='post-icons' />
+                <div style={{color:(likedPosts.includes(post._id)?'#0866ff':darkMode?'#fff':'#65676B')}} onClick={handleLikes}>
+                    {
+                        likedPosts.includes(post._id)?
+                        <AiFillLike className='post-icons' />
+                        :
+                        <AiOutlineLike className='post-icons' />
+                    }
                     <span>Like</span>
                 </div>
-                <div onClick={()=>setOpenModal(true)}>
+                <div onClick={showComments}>
                     <BiMessageRounded className='post-icons' />
                     <span>Comment</span>
                 </div>
-                <div>
+                <div style={{cursor:'not-allowed'}}>
                      <PiShareFatLight className='post-icons' />
                      <span>Share</span>
                 </div>
@@ -87,6 +212,11 @@ const Posts = ({post}) => {
                <Modal
                 open={openModal}
                 onClose={handleClose}
+                slotProps={{
+                        backdrop:{
+                            style:{backgroundColor: darkMode?'rgba(0, 0, 0, 0.6)': 'rgba(255,255,255,0.6)'}
+                        }
+                    }}
                > 
                     <div className={darkMode?'dark-background-popup dark-text facebook-posts post-comment-modal':'facebook-posts post-comment-modal'}>
                         <div className={darkMode ? 'dark-text heading' : 'heading'} >
@@ -126,35 +256,47 @@ const Posts = ({post}) => {
                                 </div>
                             </div>
                             <div style={{borderBottom:'1px solid #ccced3'}}>
-                                <div>
-                                    <AiOutlineLike className='post-icons' />
+                                <div style={{color:(likedPosts.includes(post._id)?'#0866ff':darkMode?'#fff':'#65676B')}} onClick={handleLikes}>
+                                    {
+                                        likedPosts.includes(post._id)?
+                                        <AiFillLike className='post-icons' />
+                                        :
+                                        <AiOutlineLike className='post-icons' />
+                                    }
                                     <span>Like</span>
                                 </div>
-                                <div onClick={()=>setOpenModal(true)}>
+                                <div>
                                     <BiMessageRounded className='post-icons' />
                                     <span>Comment</span>
                                 </div>
-                                <div>
+                                <div style={{cursor:'not-allowed'}}>
                                     <PiShareFatLight className='post-icons' />
                                     <span>Share</span>
                                 </div>
                             </div>
                         </div>
                         <div className='all-comments'>
-                              <div>
-                                 <img src={profile} />
-                                 <div style={{backgroundColor:(darkMode?'rgb(50,52,54)':'#e0e4eb')}}>
-                                    <div style={{color:(darkMode?'#fff':'#050505')}} >
-                                        <p>{"Madhu Shankar"}</p>
-                                        <p>{"hi guys"}</p>
-                                    </div>
-                                    <div style={{color:(darkMode?'#B3B3CC':'rgb(101, 103, 107)')}}>
-                                        <span>Like</span>
-                                        <span>Reply</span>
-                                        <span>Share</span>
-                                    </div>
-                                 </div>
-                              </div>
+                            {
+                                postsComments.map((comment,i)=>{
+                                     return(
+
+                                        <div key={i}>
+                                            <img src={comment.author_details.profileImage? profileImage: profile} />
+                                            <div style={{backgroundColor:(darkMode?'rgb(50,52,54)':'#e0e4eb')}}>
+                                                <div style={{color:(darkMode?'#fff':'#050505')}} >
+                                                    <p>{comment.author_details.name}</p>
+                                                    <p>{comment.content}</p>
+                                                </div>
+                                                <div style={{color:(darkMode?'#B3B3CC':'rgb(101, 103, 107)')}}>
+                                                    <span>Like</span>
+                                                    <span>Reply</span>
+                                                    <span>Share</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     )
+                                })
+                            }
                         </div>
                         </div>
                         <div className='fixed-comment-container' >
@@ -162,6 +304,7 @@ const Posts = ({post}) => {
                            <TextField
                                 id="input-with-icon-textfield"
                                 placeholder={'Comment as Madhu Shankar'}
+                                value={comment}
                                 sx={{
                                     width: '100%',
                                     ".MuiOutlinedInput-notchedOutline":{

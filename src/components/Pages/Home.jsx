@@ -163,7 +163,7 @@ const Home = () => {
               <div className='posts'>
                 {posts.map((postData,i)=>{   
                     if(postData.images[0] && postData.author.profileImage !== null){
-                        return <Posts key={i} post={postData} />
+                        return <Posts key={i} fetchPosts={fetchPosts} post={postData} />
                     }
                     return null;
                 })

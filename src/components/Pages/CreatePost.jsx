@@ -129,6 +129,11 @@ const CreatePost = () => {
                 <Modal
                     open={modalOpen}
                     onClose={handleClose}
+                    slotProps={{
+                        backdrop:{
+                            style:{backgroundColor:darkMode?'rgba(0, 0, 0, 0.6)': 'rgba(255,255,255,0.6)'}
+                        }
+                    }}
                 >
                     <div className={darkMode ? 'dark-background-popup modal-create-post' : 'modal-create-post'}>
                         <div className={darkMode ? 'dark-text heading' : 'heading'}>
