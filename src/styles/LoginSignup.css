@@ -1,0 +1,290 @@
+.login-signup-page{
+    width: 100%;
+    /* height: 100%; */
+    height: 100vh;
+    padding: 72px 0px 112px;
+    background-color: rgb(242, 244, 247);
+    box-sizing: border-box;
+}
+.login-signup-page .margin-div{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 980px;
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+.login-signup-page .margin-div .logo-text{
+    width: 100%;
+    max-width: 548px;
+}
+.margin-div .logo-text img{
+    height: 106px;
+    width: 320px;
+    object-fit:cover;
+    margin-left: -28px;
+    margin-bottom: -15px;
+   
+}
+.margin-div .logo-text p{
+    margin: 0px;
+    max-width: 500px;
+    font-size: 28px;
+    font-weight: 450;
+    padding-bottom: 20px;
+    line-height: 32px;
+}
+
+
+
+.login-container{
+    width: 100%;
+    max-width: 400px;
+    padding: 15px 15px 24px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1),
+                0 8px 16px rgba(0, 0, 0, .1);
+}
+.login-container .login-btn{
+    border-style: none;
+    width: 100%;
+    height: 48px;
+    background-color: rgb(8, 102, 255);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.login-container .login-btn:hover{
+    background-color: rgb(56, 126, 238);
+}
+.login-container .forgot-password{
+   /* width: 100%; */
+   height: 50px;
+   padding: 15px;
+   border-bottom: 1px solid #dddfe2;
+   box-sizing: border-box;
+}
+.login-container .forgot-password p{
+    margin: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(8, 102, 255);
+    line-height: 20px;
+    text-align: center;
+    cursor: not-allowed;
+}
+.create-account-div{
+    width: 195px;
+    margin: 20px auto 0px;
+}
+.login-container .create-account-btn{
+     border-style: none;
+     width: 100%;
+     max-width: 195px;
+     height: 48px;
+     padding: 10px 15px;
+     box-sizing: border-box;
+     background-color: rgb(66, 183, 42);
+     color: #fff;
+     border-radius: 6px;
+     font-size: 17px;
+     font-weight: 700;
+     cursor: pointer;
+}
+.login-container .create-account-btn:hover{
+    background-color: rgb(87, 156, 74);
+}
+
+
+
+/* create account modal */
+.dark-signup-color{
+    color: #d6dbdf !important;
+}
+ .create-account-Modal{
+   outline: none;
+   width: 100%;
+   max-width: 432px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #fff;
+   color: rgb(96, 103, 112);
+   border-radius: 10px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, .1),
+                0 8px 16px rgba(0, 0, 0, .1);
+}
+ .create-account-Modal .modal-heading{
+    padding: 10px 16px;
+    border-bottom: 1px solid #dddfe2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+ .create-account-Modal .modal-heading h1{
+    margin: 0px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 38px;
+}
+.create-account-Modal .modal-heading .cross-icon{
+   height: 24px;
+   width: 24px;
+   color: #050505;
+   cursor: pointer;
+}
+.create-account-Modal .modal-heading span{
+    /* color: rgb(96, 103, 112); */
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+}
+.create-account-Modal .user-details{
+    padding: 16px;
+    color: #606770;
+}
+.create-account-Modal .user-details .user-name{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.create-account-Modal .user-details .user-name-input{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(28, 30, 33);
+    border-radius: 5px;
+    border: 1px solid #b8c1cc;
+    padding: 11px;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: rgb(245, 246, 247);
+}
+.create-account-Modal .user-details .user-name-input:focus{
+    outline: none;
+}
+.create-account-Modal .user-details .date-of-birth , .create-account-Modal .user-details .gender{
+   width: 100%;
+   height: 55px;
+   margin-top: 10px;
+}
+ .user-details .date-of-birth div:first-child p, .user-details .gender div:first-child p{
+    margin: 0px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 450;
+}
+.user-details .date-of-birth div:first-child div, .user-details .gender div:first-child div{
+    font-size: 8px;
+    font-weight: 500;
+    padding: 0px 4px;
+    border-radius: 50%;
+    background-color: #606770;
+    color: #fff;
+    margin-left: -5px;
+}
+.create-account-Modal .user-details .date-of-birth >div, .create-account-Modal .gender >div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.create-account-Modal .user-details .date-of-birth select{
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    border: 1px solid rgb(204, 208, 213);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.create-account-Modal .user-details .date-of-birth select:focus{
+    outline: none;
+}
+.create-account-Modal .gender >div:nth-child(2) div{
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    color: #050505;
+    border: 1px solid rgb(204, 208, 213);
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+.create-account-Modal .gender >div:nth-child(2) div input{
+    cursor: pointer;
+}
+.create-account-Modal .signup-text1, .create-account-Modal .signup-text2{
+   margin: 11px 0px;
+   font-size: 11px;
+   line-height: 15px;
+   font-weight: 400;
+   color: #777777;
+}
+.create-account-Modal .signup-btn-div{
+    width: 195px;
+    margin: 10px auto;
+}
+.create-account-Modal .signup-btn-div button{
+    border-style: none;
+    width: 100%;
+    max-width: 195px;
+    height: 36px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    background-color: rgb(66, 183, 42);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.create-account-Modal .signup-btn-div button:hover{
+   background-color: rgb(87, 156, 74);
+}
+
+
+
+
+
+
+
+@media only screen and (max-width:900px){
+    .login-signup-page{
+        padding: 20px 0px 112px;
+    }
+    .login-signup-page .margin-div{
+        flex-direction: column;
+        max-width:400px;
+    }
+    .login-signup-page .margin-div .logo-text{
+        max-width: 400px;
+        display: grid;
+        place-items: center;
+    }
+    .margin-div .logo-text p{
+        max-width: 400px;
+        text-align: center;
+        line-height: 25px;
+    }
+    .margin-div .logo-text img{
+        margin-left: unset;
+        margin-bottom: 20px;
+        height: 40px;
+        width: 220px;
+    }
+}

@@ -77,6 +77,13 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   border-radius: 10px;
+}
+.header-middle .routes-div:hover{
+    background-color: #f0f2f5;
+}
+.dark-header-style .routes-div:hover{
+    background-color: #3b4044 !important;
 }
 .header-icons{
     width: 24px;
@@ -105,6 +112,7 @@
     background-color: #e0e4eb;
     display: grid;
     place-items: center;
+    cursor: pointer;
 }
 .header-right-circular img{
     width: 40px;
@@ -119,10 +127,19 @@
     align-items: center;
     justify-content: center;
 }
+.header-right-circular:hover{
+    background-color: #cbcfd4;
+}
+.dark-header-style .header-right-circular:hover{
+    background-color:#3b4044 !important
+}
 
 
 
 /* daek mode */
+.dark-header-style{
+    background-color: #242526 !important;
+}
 .dark-text{
     /* color: #f0f2f5; */
     color: #fff !important;
@@ -135,7 +152,8 @@
     
 }
 .dark-background-popup{
-    background-color: #222527 !important;
+    /* background-color: #222527 !important; */
+    background-color: #3c4245 !important;
 }
 .dark-parent{
     background-color: #18191A !important;

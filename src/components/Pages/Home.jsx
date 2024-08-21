@@ -12,7 +12,7 @@ import Posts from './Posts';
 
 const Home = () => {
   const [seeMore, setSeeMore]= useState(true);
-  const {resolution, darkMode} = useContext(GlobalContext);
+  const {resolution, darkMode, user} = useContext(GlobalContext);
   const navigate = useNavigate();
 
 
@@ -51,105 +51,105 @@ const Home = () => {
             <div className='profile'>
                 <img alt='profile' src={profilePic? profilePic:profile} />
             </div>
-            <p style={{color:(darkMode? '#fff':'#050505')}}>Madhu shankar</p>
+            <p >{user.name}</p>
           </div>
 
           <div onClick={()=>navigate('/pages')}>
              <div className='icon icon1'></div>
-             <p style={{color:(darkMode? '#fff':'#050505')}}>Pages</p>
+             <p onClick={()=>navigate('/pages')} >Pages</p>
           </div>
  
           <div>
              <div onClick={()=>navigate('/friends')} className='icon icon2'></div>
-             <p style={{color:(darkMode? '#fff':'#050505')}}>Friends</p>
+             <p onClick={()=>navigate('/friends')} >Friends</p>
           </div>
 
           <div>
              <div onClick={()=>navigate('/marketplace')} className='icon icon3'></div>
-             <p style={{color:(darkMode? '#fff':'#050505')}}>Marketplace</p>
+             <p onClick={()=>navigate('/marketplace')} >Marketplace</p>
           </div>
 
           <div>
              <div onClick={()=>navigate('/groups')} className='icon icon4'></div>
-             <p style={{color:(darkMode? '#fff':'#050505')}}>Groups</p>
+             <p onClick={()=>navigate('/groups')} >Groups</p>
           </div>
 
           <div>
-              <div onClick={()=>navigate('/vedio')} className="icon icon5"></div>
-              <p style={{color:(darkMode? '#fff':'#050505')}}>Vedio</p>
+              <div onClick={()=>navigate('/video')} className="icon icon5"></div>
+              <p onClick={()=>navigate('/video')} >Vedio</p>
           </div>
 
           <div >
              {seeMore?
               <div style={{cursor:'pointer'}} onClick={()=> setSeeMore(false)} className='see-more' >
                   <div ><MdExpandMore style={{height:'25px',width:'25px',color:(darkMode?'#fff':'#050505')}}/></div>
-                  <p style={{color:(darkMode? '#fff':'#050505')}}>See More</p>
+                  <p >See More</p>
               </div>
               :
               <div className={darkMode?'dark-mode-hover expended-div':'expended-div'}>
                   <div>
                       <div className="icon icon6"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Saved</p>
+                      <p >Saved</p>
                   </div>
                   <div>
                       <div className="icon icon7"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Memories</p>
+                      <p >Memories</p>
                   </div>
                   <div>
                       <div className="icon8"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Ads Manager</p>
+                      <p >Ads Manager</p>
                   </div>
                   <div>
                       <div className="icon9"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Climate Science Center</p>
+                      <p >Climate Science Center</p>
                   </div>
                   <div>
                       <div className="icon10"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Events</p>
+                      <p >Events</p>
                   </div>
                   <div>
                       <div className="icon11"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Facebook Pay</p>
+                      <p >Facebook Pay</p>
                   </div>
                   <div>
                       <div className="icon12"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Feeds</p>
+                      <p >Feeds</p>
                   </div>
                   <div>
                       <div className="icon icon13"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Fundraisers</p>
+                      <p >Fundraisers</p>
                   </div>
                   <div>
                       <div className="icon14"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Gaming Vedio</p>
+                      <p >Gaming Vedio</p>
                   </div>
                   <div>
                       <div className="icon15"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Messenger</p>
+                      <p >Messenger</p>
                   </div>
                   <div>
                       <div className="icon16"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Messenger kids</p>
+                      <p >Messenger kids</p>
                   </div>
                   <div>
                       <div className="icon icon17"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Play Games</p>
+                      <p >Play Games</p>
                   </div>
                   <div>
                       <div className="icon18"></div>
-                      <p style={{color:(darkMode? '#fff':'#050505')}}>Recent ad activity</p>
+                      <p >Recent ad activity</p>
                   </div>
 
 
                   <div style={{cursor:'pointer'}} onClick={()=> setSeeMore(true)} className='see-less' >
                        <div ><MdExpandLess style={{height:'25px',width:'25px',color:(darkMode?'#fff':'#050505')}} /></div>
-                       <p style={{color:(darkMode? '#fff':'#050505')}}>See Less</p>
+                       <p >See Less</p>
                   </div>
               </div>
              }
              <div className="bottom-text">
-                <p>Privacy &bull; Terms &bull; Advertising &bull; Ad Choices</p>
-                <p>&bull; Cookies &bull; More &bull; Meta © 2024</p>
+                <p style={{color:'#656768'}}>Privacy &bull; Terms &bull; Advertising &bull; Ad Choices</p>
+                <p style={{color:'#656768'}}>&bull; Cookies &bull; More &bull; Meta © 2024</p>
              </div>
           </div>
           

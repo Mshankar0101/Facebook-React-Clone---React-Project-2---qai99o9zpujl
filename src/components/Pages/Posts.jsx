@@ -25,7 +25,7 @@ const Posts = ({post, fetchPosts}) => {
         // console.log(postId)
         const myHeaders = new Headers();
         myHeaders.append("projectID", "ktu17k7gadkn");
-        myHeaders.append("Authorization", `Bearer ${user.token}`);
+        myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
 
         const requestOptions = {
         method: "GET",
@@ -55,7 +55,7 @@ const Posts = ({post, fetchPosts}) => {
             const myHeaders = new Headers();
             myHeaders.append("projectID", "ktu17k7gadkn");
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", `Bearer ${user.token}`);
+            myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
 
             const raw = JSON.stringify({
             "content": comment
@@ -85,19 +85,13 @@ const Posts = ({post, fetchPosts}) => {
         }
     }
 
-
-    // handling like and unlike
-    
-    // const [isLiked,setIsLiked]= useState(false);
-    // useEffect(()=>{
-    //    // console.log(_id, author, content, images, createdAt, likeCount, commentCount)
-    //    setIsLiked(likedPostsArr.includes(post._id));
-       
-    // },[])
+    //   post api contains these keys
+    //    // console.log(_id, author, content, images, createdAt, likeCount, commentCount) 
+  
     const handleLikes = ()=>{
         const myHeaders = new Headers();
         myHeaders.append("projectID", "ktu17k7gadkn");
-        myHeaders.append("Authorization", `Bearer ${user.token}`);
+        myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
 
 
         const postId = post._id;
@@ -303,7 +297,7 @@ const Posts = ({post, fetchPosts}) => {
                            <img src={profilePic?profilePic:profile} />
                            <TextField
                                 id="input-with-icon-textfield"
-                                placeholder={'Comment as Madhu Shankar'}
+                                placeholder={`Comment as ${user.name}`}
                                 value={comment}
                                 sx={{
                                     width: '100%',

@@ -7,7 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import { MdPublic } from "react-icons/md";
 
 const CreatePost = () => {
-    const { darkMode } = useContext(GlobalContext);
+    const { darkMode, user } = useContext(GlobalContext);
 
     // create post modal
     const [modalOpen, setModalOpen] = useState(false);
@@ -48,9 +48,8 @@ const CreatePost = () => {
     const handlePostSubmission = () => {
         const myHeaders = new Headers();
         myHeaders.append("projectID", "ktu17k7gadkn");
-        // myHeaders.append("Authorization", `Bearer ${user.token}`);
-        myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTYyMWQyYTA2ZjFjNjkwYzYzZGQ3MCIsImlhdCI6MTcyMjE2MzY2NiwiZXhwIjoxNzUzNjk5NjY2fQ.C6Lpp1Q5pFwzpj1jjzx4_GWEoBt1x75MDVT9YKgaxrg");
-
+        myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
+        
         const formdata = new FormData();
         formdata.append("title", "newton");
         formdata.append("content", content);
@@ -65,7 +64,8 @@ const CreatePost = () => {
         fetch("https://academics.newtonschool.co/api/v1/facebook/post/", requestOptions)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    // throw new Error(`HTTP error! Status: ${response.status}`);
+                    alert(`HTTP error! Status: ${response.status}`);
                 }
                 return response.json();
             })
@@ -78,17 +78,7 @@ const CreatePost = () => {
                 console.error("Error:", error.message);
                 alert(`An error occurred: ${error.message}`);
             });
-        // .then((response) => response.json())
-        // .then((result) => {
-        //     // console.log(result.data);
-        //     console.log(result);
-        //     // alert('Created Post Sucessfully!');
-        //     handleClose();
-        // })
-        // .catch((error) =>{
-        //     alert(error.message);
-        //     console.log("error",error);
-        // });
+        
     }
 
 
@@ -106,7 +96,7 @@ const CreatePost = () => {
                     <img alt='profile' src={profilePic ? profilePic : profile} />
                 </div>
                 <div className='createpost-input-div' onClick={handleOpen} style={{ backgroundColor: (darkMode ? 'rgb(80, 86, 92)' : '#f0f2f5') }} >
-                    <p>{"What's on your mind, ...? "}</p>
+                    <p>{`What's on your mind, ${user.name}?`}</p>
                 </div>
             </div>
             <div className={darkMode ? 'dark-text create-post-second-div' : 'create-post-second-div'}>
@@ -155,7 +145,7 @@ const CreatePost = () => {
                             </div>
                         </div>
                         <div className='create-post-textbox' >
-                            <textarea autoFocus onChange={(e) => setContent(e.target.value)} className={darkMode ? 'dark-text dark-background-popup' : ''} placeholder={"What's on your mind, ...?"}  ></textarea>
+                            <textarea autoFocus onChange={(e) => setContent(e.target.value)} className={darkMode ? 'dark-text dark-background-popup' : ''} placeholder={`What's on your mind, ${user.name}?`}  ></textarea>
                         </div>
                         <div style={{ display: (!image ? 'none' : 'block') }} className='post-uploaded-img'>
                             <img src={image} alt='post img' />

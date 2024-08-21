@@ -60,6 +60,7 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
 .dark-mode-hover >div:not(:last-child):hover, .dark-mode-hover .see-more:hover, .dark-mode-hover .see-less:hover{
     background-color: rgb(50,52,54) !important ;
 }
@@ -72,12 +73,15 @@
 .home-left-container > div:not(:last-child):hover, .see-more:hover, .see-less:hover{
     background-color: #e0e4eb;
 }
-.home-left-container >div p{
+.home-left-container p{
     margin: 0px;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.4;
     color: #050505;
+}
+.dark-mode-hover p{
+    color: #fff ;
 }
 .home-left-container .profile, .see-more div, .see-less div{
     width: 36px;
@@ -136,7 +140,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1.4;
-    color: #050505;
+    /* color: #050505; */
 }
 
 .see-more div, .see-less div{

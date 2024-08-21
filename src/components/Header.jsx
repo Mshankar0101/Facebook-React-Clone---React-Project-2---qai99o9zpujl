@@ -41,7 +41,7 @@ const Header = () => {
             setIconClick('home');
         }else if(path === '/pages'){
             setIconClick('pages');
-        }else if(path === '/vedio'){
+        }else if(path === '/video'){
             setIconClick('vedio');
         }else if(path === '/marketplace'){
             setIconClick('marketplace');
@@ -64,7 +64,7 @@ const Header = () => {
     let profilePic;
 
   return (
-    <div className={darkMode?'header dark-parent':'header'}>
+    <div style={{display:(location.pathname === '/login-signup'?'none':'flex')}} className={darkMode?'header dark-header-style':'header'}>
        <div className='logo-search'>
           <SiFacebook style={{height:'40px', width:'40px',color:'#0866ff',borderRadius:'50%'}} />
           <TextField
@@ -152,8 +152,8 @@ const Header = () => {
                     </div>
                 </NavLink>
             </Tooltip>
-            <Tooltip title="Vedio">
-                <NavLink className='navlink' to='vedio'>
+            <Tooltip title="Video">
+                <NavLink className='navlink' to='video'>
                     <div className='routes-div'>
                         {iconClick === 'vedio'?
                         <svg viewBox="0 0 24 24" width="24" height="24" fill='#0866ff' >
