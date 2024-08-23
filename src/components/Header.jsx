@@ -7,37 +7,25 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { GlobalContext } from './contexts/Contexts';
 import { TbFlag3 , TbFlag3Filled} from "react-icons/tb";
 import Tooltip from '@mui/material/Tooltip';
-import { NavLink, useLocation } from 'react-router-dom';
-import profile from '../components/images/profile.jpg'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import profile from '../components/images/profile.jpg';
+import { RiSettings5Fill } from "react-icons/ri";
+
 
 
 
 const Header = () => {
     const location = useLocation();
     const globalContext = useContext(GlobalContext);
-    const {darkMode}= globalContext;
+    const {darkMode, setModalOpen}= globalContext;
     
 
-    //   search box
-    const [searchboxOpen, setSearchboxOpen]= useState(false)
-    const autocompleteRef = useRef();
-    useEffect(()=>{
-        const handleCloseAutocomplete=(e) =>{
-            if(autocompleteRef.current && !autocompleteRef.current.contains(e.target)){
-                setSearchboxOpen(false)
-            }
-        }
-        document.addEventListener("mousedown",handleCloseAutocomplete);
-        return () => {
-            document.removeEventListener("mousedown", handleCloseAutocomplete);
-            };
-    },[])
-
-    // tabs change
+    
+    // pages change
     const [iconClick, setIconClick] = useState("home");
     useEffect(()=>{
         const path = location.pathname;
-        if(path === '/'){
+        if(path === '/' || path === '/home'){
             setIconClick('home');
         }else if(path === '/pages'){
             setIconClick('pages');
@@ -49,7 +37,7 @@ const Header = () => {
             setIconClick('groups');
         }
     },[location.pathname]);
-
+    
     //right icons click
     const [rightIconsClick, setRightIconsClick] = useState({menu:false, message:false, notification:false, account:false});
     const handleIconsClick = (value)=>{
@@ -59,7 +47,97 @@ const Header = () => {
             return newState;
         })
     } 
+    
 
+
+    
+    //   search box, menu, notification, message and account mousedoun event
+    const [searchboxOpen, setSearchboxOpen]= useState(false)
+    const inputRef = useRef();
+    const menuRef = useRef();
+    const noticicationRef = useRef();
+    const messageRef = useRef();
+    const accountRef = useRef();
+    const rightCircularIconRef = useRef({})
+    useEffect(()=>{
+        const handleCloseAutocomplete=(e) =>{
+            if(inputRef.current && !inputRef.current.contains(e.target)){
+                setSearchboxOpen(false)
+            }else if(menuRef.current && !menuRef.current.contains(e.target) && !rightCircularIconRef.current.menu.contains(e.target)){
+                setRightIconsClick((prev)=>{
+                    return {...prev, menu: false}
+                })
+            }else if(noticicationRef.current && !noticicationRef.current.contains(e.target) && !rightCircularIconRef.current.notification.contains(e.target)){
+                setRightIconsClick((prev)=>{
+                    return {...prev, notification: false}
+                })
+            }else if(messageRef.current && !messageRef.current.contains(e.target) && !rightCircularIconRef.current.message.contains(e.target)){
+                setRightIconsClick((prev)=>{
+                    return {...prev, message: false}
+                })
+            }else if(accountRef.current && !accountRef.current.contains(e.target) && !rightCircularIconRef.current.account.contains(e.target)){
+                setRightIconsClick((prev)=>{
+                    return {...prev, account: false}
+                })
+            }
+
+        }
+        document.addEventListener("mousedown",handleCloseAutocomplete);
+        return () => {
+            document.removeEventListener("mousedown", handleCloseAutocomplete);
+            };
+    },[])
+
+
+
+    // textfield element
+    const textfeild = <TextField
+                    id="input-with-icon-textfield"
+                    placeholder={rightIconsClick.menu?'Search menu':rightIconsClick.message?'Search message': rightIconsClick.notification?'Search notification':'Search'}
+                    // disabled
+                    sx={{
+                        width: '328px',
+                        ".MuiOutlinedInput-notchedOutline":{
+                            border: 'none'
+                        },
+                        "& .MuiInputBase-root":{
+                            height: '36px',
+                            backgroundColor:(darkMode?'rgb(80, 86, 92)':'#e0e4eb'),
+                            borderRadius:'20px',
+                            color: (darkMode?'#fff':'#000'),
+                            
+                        },
+                    }}
+                    InputProps={{
+                    readOnly: true,
+                    type:'search',
+                    startAdornment: (
+                        <InputAdornment position="start">
+                        <FaSearch color='#65676b' />
+                        </InputAdornment>
+                    ),
+                    }}
+                    variant="outlined"
+                    />
+
+
+    // navigating user based on menu click
+    const navigate = useNavigate();
+    const menuClick = (value)=>{
+        if(value === 'friends' || value === 'pages' || value === 'groups' || value === 'pages/create'){
+            setRightIconsClick((prev)=>{
+                return {...prev, menu: false}
+            })
+            navigate('/'+value);
+        }else if(value === 'create post'){
+            setRightIconsClick((prev)=>{
+                return {...prev, menu: false}
+            })
+            navigate('/home');
+            setModalOpen(true)
+        }
+         
+    }
 
     let profilePic;
 
@@ -97,7 +175,7 @@ const Header = () => {
             variant="outlined"
           />
           {searchboxOpen && 
-            <div ref={autocompleteRef} className={darkMode?'search-feild-container dark-background-popup': 'search-feild-container'}>
+            <div ref={inputRef} className={darkMode?'search-feild-container dark-background-popup': 'search-feild-container'}>
                 <div>
                     <IoArrowBackOutline onClick={()=> setSearchboxOpen(false)} className='back-icon' />
                     
@@ -201,14 +279,14 @@ const Header = () => {
        </div>
        <div className='header-right'>
             <Tooltip title="Menu">
-                <div onClick={()=>handleIconsClick("menu")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
+                <div  ref={(el) => (rightCircularIconRef.current.menu = el)} onClick={()=>handleIconsClick("menu")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
                     <svg viewBox="0 0 24 24" width="20" height="20" fill={rightIconsClick.menu? "#0866ff":'#000'} >
                         <path d="M18.5 1A1.5 1.5 0 0 0 17 2.5v3A1.5 1.5 0 0 0 18.5 7h3A1.5 1.5 0 0 0 23 5.5v-3A1.5 1.5 0 0 0 21.5 1h-3zm0 8a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 21.5 9h-3zm-16 8A1.5 1.5 0 0 0 1 18.5v3A1.5 1.5 0 0 0 2.5 23h3A1.5 1.5 0 0 0 7 21.5v-3A1.5 1.5 0 0 0 5.5 17h-3zm8 0A1.5 1.5 0 0 0 9 18.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm-16-8A1.5 1.5 0 0 0 1 10.5v3A1.5 1.5 0 0 0 2.5 15h3A1.5 1.5 0 0 0 7 13.5v-3A1.5 1.5 0 0 0 5.5 9h-3zm0-8A1.5 1.5 0 0 0 1 2.5v3A1.5 1.5 0 0 0 2.5 7h3A1.5 1.5 0 0 0 7 5.5v-3A1.5 1.5 0 0 0 5.5 1h-3zm8 0A1.5 1.5 0 0 0 9 2.5v3A1.5 1.5 0 0 0 10.5 7h3A1.5 1.5 0 0 0 15 5.5v-3A1.5 1.5 0 0 0 13.5 1h-3zm0 8A1.5 1.5 0 0 0 9 10.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 13.5 9h-3z"></path>
                     </svg>
                </div>
             </Tooltip>
             <Tooltip title="Messanger">
-                <div onClick={()=>handleIconsClick("message")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
+                <div ref={(el) => (rightCircularIconRef.current.message = el)} onClick={()=>handleIconsClick("message")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
                     <svg viewBox="0 0 12 13" width="20" height="20" fill={rightIconsClick.message? "#0866ff":'#000'} ><g fill-rule="evenodd" transform="translate(-450 -1073)">
                         <path d="m459.603 1077.948-1.762 2.851a.89.89 0 0 1-1.302.245l-1.402-1.072a.354.354 0 0 0-.433.001l-1.893 1.465c-.253.196-.583-.112-.414-.386l1.763-2.851a.89.89 0 0 1 1.301-.245l1.402 1.072a.354.354 0 0 0 .434-.001l1.893-1.465c.253-.196.582.112.413.386M456 1073.5c-3.38 0-6 2.476-6 5.82 0 1.75.717 3.26 1.884 4.305.099.087.158.21.162.342l.032 1.067a.48.48 0 0 0 .674.425l1.191-.526a.473.473 0 0 1 .32-.024c.548.151 1.13.231 1.737.231 3.38 0 6-2.476 6-5.82 0-3.344-2.62-5.82-6-5.82">
                         </path></g>
@@ -216,19 +294,130 @@ const Header = () => {
                </div>
             </Tooltip>
             <Tooltip title="Notifications">
-                <div onClick={()=>handleIconsClick("notification")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
+                <div ref={(el) => (rightCircularIconRef.current.notification = el)} onClick={()=>handleIconsClick("notification")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
                     <svg viewBox="0 0 24 24" width="20" height="20" fill={rightIconsClick.notification? "#0866ff":'#000'} >
                         <path d="M3 9.5a9 9 0 1 1 18 0v2.927c0 1.69.475 3.345 1.37 4.778a1.5 1.5 0 0 1-1.272 2.295h-4.625a4.5 4.5 0 0 1-8.946 0H2.902a1.5 1.5 0 0 1-1.272-2.295A9.01 9.01 0 0 0 3 12.43V9.5zm6.55 10a2.5 2.5 0 0 0 4.9 0h-4.9z"></path>
                     </svg>
                 </div>
             </Tooltip>
             <Tooltip title="Account">
-                <div onClick={()=>handleIconsClick("account")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
+                <div ref={(el) => (rightCircularIconRef.current.account = el)} onClick={()=>handleIconsClick("account")} className={darkMode?"dark-background header-right-circular":"header-right-circular"}>
                     <img alt='profile' src={profilePic? profilePic: profile} />
                 </div>
             </Tooltip>
 
        </div>
+       {
+            rightIconsClick.menu?
+            <div ref={menuRef} className={darkMode?'dark-background-popup dark-text header-right-menu':'header-right-menu'}>
+                 <p>Menu</p>
+                 <div className='flex-menu'>
+                    <div>
+                        <div className='search'>
+                            {textfeild}
+                        </div>
+                        <div className='item-div'>
+                            <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yr/r/qfMB40PdgWb.png' alt='event'/>
+                            <div>
+                                <p>Events</p>
+                                <p>Organize or find events and other things to do online and nearby.</p>
+                            </div>
+                        </div>
+                        <div style={{cursor:'pointer'}} onClick={()=>menuClick('friends')} className='item-div'>
+                            <img src='https://static.xx.fbcdn.net/rsrc.php/v3/y6/r/i0pziEs5Wj6.png' alt='friends'/>
+                            <div>
+                                <p>Friends</p>
+                                <p>Search for friends or people you may know.</p>
+                            </div>
+                        </div>
+                        <div style={{cursor:'pointer'}} onClick={()=>menuClick('groups')} className='item-div'>
+                            <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/MhkwI3R0SHP.png' alt='groups'/>
+                            <div>
+                                <p>Groups</p>
+                                <p>Connect with people who share your interests.</p>
+                            </div>
+                        </div>
+                        <div className='item-div'>
+                            <img src='https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-6zDH4i8Hrw.png' alt='news feed'/>
+                            <div>
+                                <p>News Feed</p>
+                                <p>See relevant posts from people and Pages you follow.</p>
+                            </div>
+                        </div>
+                        <div className='item-div'>
+                            <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/eECk3ceTaHJ.png' alt='feed'/>
+                            <div>
+                                <p>Feed</p>
+                                <p>See the most recent posts from your friends, groups, Pages and more</p>
+                            </div>
+                        </div>
+                        <div style={{cursor:'pointer'}} onClick={()=>menuClick('pages')} className='item-div'>
+                            <img src='https://static.xx.fbcdn.net/rsrc.php/v3/y2/r/7RdHDScIkAe.png' alt='pagess'/>
+                            <div>
+                                <p>Pages</p>
+                                <p>Discover and connect with businesses on Facebook.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p>Create</p>
+                         <div style={{cursor:'pointer'}}  onClick={()=>menuClick("create post")} className='item-div'>
+                             <div className='circular-icon-div'>
+                                  <div className='icon icon1'></div>
+                             </div>
+                             <p>Post</p>
+                         </div>
+                         <div style={{cursor:'pointer'}} onClick={()=> menuClick("pages/create")} className='item-div'>
+                             <div className='circular-icon-div'>
+                                  <div className='icon icon2'></div>
+                             </div>
+                             <p>Page</p>
+                         </div>
+                         <div className='item-div'>
+                             <div className='circular-icon-div'>
+                                  <div className='icon icon3'></div>
+                             </div>
+                             <p>Story</p>
+                         </div>
+                         <div className='item-div'>
+                             <div className='circular-icon-div'>
+                                  <div className='icon icon4'></div>
+                             </div>
+                             <p>Reel</p>
+                         </div>
+                         <div className='item-div'>
+                             <div className='circular-icon-div'>
+                                  <div className='icon icon5'></div>
+                             </div>
+                             <p>Ad</p>
+                         </div>
+                    </div>
+                 </div>
+            </div>
+
+            :
+
+            rightIconsClick.notification?
+            <div ref={noticicationRef} className={darkMode?'dark-background-popup dark-text header-right-notificaton':'header-right-notificaton'}>
+
+            </div>
+
+            :
+
+            rightIconsClick.message?
+            <div ref={messageRef} className={darkMode?'dark-background-popup dark-text header-right-message':'header-right-message'}>
+
+            </div>
+
+            :
+            rightIconsClick.account?
+            <div ref={accountRef} className={darkMode? 'dark-background-popup dark-text header-right-account':'header-right-account'}>
+
+            </div>
+            :null
+            
+       }
     </div>
   )
 }

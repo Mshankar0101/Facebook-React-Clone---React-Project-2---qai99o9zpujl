@@ -12,22 +12,8 @@ const GlobalContextProvider = ({children}) => {
   // liked post id array
   const [likedPosts, setLikedPosts] = useState(JSON.parse(localStorage.getItem('likedPosts')) || []);
 
-  // useEffect(() => {
-  //   const handleStorageChange = (e) => {
-  //     if (e.key === 'user') {
-  //       // Update state when localStorage changes
-  //       setUser(JSON.parse(e.newValue) || {});
-  //     }
-  //   };
-
-  //   // Add event listener for localStorage changes
-  //   window.addEventListener('storage', handleStorageChange);
-
-  //   // Clean up the event listener
-  //   return () => {
-  //     window.removeEventListener('storage', handleStorageChange);
-  //   };
-  // }, []);
+  // create post modal
+  const [modalOpen, setModalOpen] = useState(false);
 
 
   useEffect(() => {
@@ -43,7 +29,7 @@ const GlobalContextProvider = ({children}) => {
   }, []);
   
     return (
-    <GlobalContext.Provider value={{darkMode, setDarkMode, resolution, setResolution,user,setUser, likedPosts, setLikedPosts}} >
+    <GlobalContext.Provider value={{darkMode, setDarkMode, resolution, setResolution,user,setUser, likedPosts, setLikedPosts, modalOpen, setModalOpen}} >
         {children}
     </GlobalContext.Provider>
   )

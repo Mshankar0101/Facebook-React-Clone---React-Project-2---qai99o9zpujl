@@ -7,10 +7,9 @@ import { RxCross2 } from "react-icons/rx";
 import { MdPublic } from "react-icons/md";
 
 const CreatePost = () => {
-    const { darkMode, user } = useContext(GlobalContext);
+    const { darkMode, user, modalOpen, setModalOpen } = useContext(GlobalContext);
 
-    // create post modal
-    const [modalOpen, setModalOpen] = useState(false);
+    
     const handleClose = () => setModalOpen(false);
     const handleOpen = () => setModalOpen(true);
 

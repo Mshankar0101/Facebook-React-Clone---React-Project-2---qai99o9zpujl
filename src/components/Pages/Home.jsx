@@ -51,7 +51,7 @@ const Home = () => {
             <div className='profile'>
                 <img alt='profile' src={profilePic? profilePic:profile} />
             </div>
-            <p >{user.name}</p>
+            <p>{user.name}</p>
           </div>
 
           <div onClick={()=>navigate('/pages')}>
@@ -79,7 +79,7 @@ const Home = () => {
               <p onClick={()=>navigate('/video')} >Vedio</p>
           </div>
 
-          <div >
+          <div>
              {seeMore?
               <div style={{cursor:'pointer'}} onClick={()=> setSeeMore(false)} className='see-more' >
                   <div ><MdExpandMore style={{height:'25px',width:'25px',color:(darkMode?'#fff':'#050505')}}/></div>
