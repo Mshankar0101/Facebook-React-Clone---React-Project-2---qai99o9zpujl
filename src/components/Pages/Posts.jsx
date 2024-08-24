@@ -4,7 +4,6 @@ import { GlobalContext } from '../contexts/Contexts';
 import profile from '../images/profile.jpg';
 import { RxCross2 } from "react-icons/rx";
 import { IoIosMore } from "react-icons/io";
-import story4 from '../images/story/story4.jpg';
 import { AiFillLike } from "react-icons/ai";
 import { BiSolidMessageRounded } from "react-icons/bi";
 import { AiOutlineLike } from "react-icons/ai";

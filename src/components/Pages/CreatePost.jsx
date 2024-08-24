@@ -131,7 +131,7 @@ const CreatePost = () => {
                                 <RxCross2 className={darkMode ? 'dark-text cross-icon' : 'cross-icon'} />
                             </div>
                         </div>
-                        <div>
+                        <div className='create-post-profile-name'>
                             <div>
                                 <img alt='profile' src={profilePic ? profilePic : profile} />
                             </div>

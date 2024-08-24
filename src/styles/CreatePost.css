@@ -150,7 +150,7 @@
 .dark-background-popup .heading > div:hover{
     background-color: #3b4044 !important;
 }
-.modal-create-post > div:nth-child(2){
+.modal-create-post > .create-post-profile-name{
     padding:16px;
     height: 40px;
     display: flex;
@@ -159,21 +159,21 @@
     gap: 10px;
     color: #050505;
 }
-.dark-background-popup > div:nth-child(2){
+.dark-background-popup > .create-post-profile-name{
     color:#B3B3CC;
-}
-.modal-create-post > div:nth-child(2) div:first-child{
+} 
+.modal-create-post  .create-post-profile-name div:first-child{
     height: 40px;
     width: 40px;
     border-radius: 50%;
 }
-.modal-create-post > div:nth-child(2) div:first-child img{
+.modal-create-post  .create-post-profile-name div:first-child img{
     height: 40px;
     width: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
-.modal-create-post > div:nth-child(2) >div:nth-child(2) div{
+.modal-create-post .create-post-profile-name >div:nth-child(2) div{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -184,14 +184,14 @@
     margin-top: 7px; 
     color: #050505;
 }
-.modal-create-post > div:nth-child(2)  p:first-child{
+.modal-create-post .create-post-profile-name  p:first-child{
     margin: 0px;
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 1px;
     line-height: 10px;
 }
-.modal-create-post > div:nth-child(2)  p:nth-child(2){
+.modal-create-post .create-post-profile-name  p:nth-child(2){
     margin: 0px;
     font-size: 12px;
     font-weight: 500;

@@ -50,14 +50,15 @@
     gap: 10px;
 
 }
-.search-feild-container .back-icon{
+.search-feild-container .back-icon, .user-setting .back-icon, .help-support .back-icon, .give-feedback .back-icon, .display-accessibility .back-icon{
     width: 24px;
     height: 24px;
     padding: 8px;
     border-radius: 50%;
     color: #65676b;
+    cursor: pointer;
 }
-.search-feild-container .back-icon:hover{
+.search-feild-container .back-icon:hover, .user-setting .back-icon:hover, .help-support .back-icon:hover, .give-feedback .back-icon:hover, .display-accessibility .back-icon:hover{
     background-color: #f0f2f5;
 }
 .header-middle{
@@ -142,13 +143,13 @@
 
 .header-right-menu{
     position: absolute;
-    top: 54px;
+    top: 55px;
     right: 7px;
     z-index: 999;
     width: 610px;
     height: 550px;
     padding: 16px;
-    background-color:rgb(247, 248, 250);
+    background-color:#fff;
     color: #050505;
     /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); */
     box-shadow: 0px 12px 12px rgba(0,0,0,0.2),
@@ -289,6 +290,257 @@
     background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yV/r/ihEGe_leKmb.png');
     background-position: 0px -233px;
 }
+
+
+/* notifiction */
+.header-right-notificaton, .header-right-message{
+    position: absolute;
+    top: 55px;
+    right: 7px;
+    z-index: 999;
+    width: 360px;
+    height: 200px;
+    padding: 16px;
+    background-color:rgb(247, 248, 250);
+    color: #050505;
+    /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); */
+    box-shadow: 0px 12px 12px rgba(0,0,0,0.2),
+                0px -1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.header-right-notificaton .space-between, .header-right-message .space-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-right-notificaton .space-between p, .header-right-message .space-between p{
+  margin: 0px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+}
+.header-right-notificaton .space-between .more-icon, .header-right-message .space-between .more-icon{
+    height: 25px;
+    width: 25px;
+    cursor: not-allowed;
+}
+.header-right-notificaton >div:nth-child(2){
+    margin: 15px 0px;
+}
+.header-right-notificaton >div:nth-child(2) span:first-child{
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 18px;
+    background-color: rgb(235, 245, 255);
+    border-radius: 18px;
+    color: #0866ff;
+    cursor: not-allowed;
+}
+.header-right-notificaton >div:nth-child(2) span:nth-child(2){
+    font-size: 15px;
+    padding-left: 20px;
+    font-weight: 500;
+    cursor: not-allowed;
+}
+.header-right-notificaton .space-between span{
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    cursor: not-allowed;
+}
+.header-right-notificaton >p{
+    margin: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+}
+
+/* message */
+.header-right-message >div:nth-child(2){
+    margin: 15px 0px;
+}
+.header-right-message> p{
+    margin: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+}
+
+/* account */
+.header-right-account{
+    position: absolute;
+    top: 55px;
+    right: 7px;
+    z-index: 999;
+    width: 360px;
+    height: 475px;
+    padding: 8px;
+    background-color:rgb(247, 248, 250);
+    color: #050505;
+    /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); */
+    box-shadow: 0px 12px 12px rgba(0,0,0,0.2),
+                0px -1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.header-right-account .profile-seeall{
+    padding: 5px;
+    border-radius: 10px;
+    margin: 0px 8px 16px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+.header-right-account .profile-seeall >div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 8px;
+    height: 44px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.header-right-account .profile-seeall >div:first-child:hover{
+    background-color: #f2f2f2;
+}
+.dark-background-popup .profile-seeall >div:first-child:hover{
+    background-color: #67696b;
+}
+.profile-seeall >div:first-child div{
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+}
+.profile-seeall >div:first-child img{
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.profile-seeall >div:first-child p{
+    margin: 0px;
+    font-size: 17px;
+    font-weight: 600; 
+}
+.profile-seeall >div:nth-child(2){
+    padding: 12px 0px 8px;
+    margin: 0px 8px;
+    border-top: 1px solid #acb2b8;
+}
+.profile-seeall >div:nth-child(2) .switch-profile{
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgb(228, 230, 235);
+    cursor: not-allowed;
+}
+/* .profile-seeall >div:nth-child(2) .switch-profile:hover{
+    background-color: #9c9fa1;
+}
+ 
+.dark-background .switch-profile:hover{
+     background-color: #9c9fa1 !important;
+} */
+.profile-seeall >div:nth-child(2) div .switch{
+    height: 20px;
+    width: 20px;
+}
+.profile-seeall >div:nth-child(2) p{
+    margin: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+}
+.header-right-account .account-option{
+    padding:0px 8px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.header-right-account .account-option:hover{
+    background-color: #f2f2f2;
+}
+.dark-background-popup .account-option:hover{
+    background-color: #67696b;
+}
+.header-right-account .account-option >div{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.header-right-account .account-option >div span{
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.header-right-account .account-option .account-option-icons{
+    height: 25px;
+    width: 25px;
+    color: #050505;
+}
+.header-right-account .account-option .account-forward-icons{
+    height: 25px;
+    width: 25px;
+}
+.header-right-account .bottom-text{
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 10px;
+}
+
+
+/* account options style */
+.header .user-setting, .header .help-support, .header .display-accessibility, .header .give-feedback {
+    position: absolute;
+    top: 55px;
+    right: 7px;
+    z-index: 599;
+    width: 360px;
+    height: 250px;
+    padding: 16px;
+    background-color:rgb(247, 248, 250);
+    color: #050505;
+    box-shadow: 0px 12px 12px rgba(0,0,0,0.2),
+                0px -1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.header .user-setting >div, .header .help-support >div, .header .display-accessibility >div, .header .give-feedback >div{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+.header .user-setting >div p, .header .help-support >div p, .header .display-accessibility >div p, .header .give-feedback >div p{
+    margin: 0px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+}
+.header .user-setting  >p, .header .help-support >p, .header .give-feedback >p{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 58px;
+    padding-top: 50px;
+}
+
 
 
 

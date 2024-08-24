@@ -1,23 +1,25 @@
 import React,{useContext, useEffect, useRef, useState} from 'react';
 import '../styles/Header.css';
 import { SiFacebook } from "react-icons/si";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaMoon } from "react-icons/fa";
 import {TextField, InputAdornment} from '@mui/material';
-import { IoArrowBackOutline } from "react-icons/io5";
+import { IoArrowBackOutline, IoLogOut } from "react-icons/io5";
 import { GlobalContext } from './contexts/Contexts';
 import { TbFlag3 , TbFlag3Filled} from "react-icons/tb";
 import Tooltip from '@mui/material/Tooltip';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import profile from '../components/images/profile.jpg';
-import { RiSettings5Fill } from "react-icons/ri";
-
-
+import { IoIosMore } from "react-icons/io";
+import { PiUserSwitchFill } from "react-icons/pi";
+import { RiSettings5Fill, RiFeedbackFill } from "react-icons/ri";
+import { MdArrowForwardIos} from "react-icons/md";
+import { IoMdHelpCircle } from "react-icons/io";
 
 
 const Header = () => {
     const location = useLocation();
     const globalContext = useContext(GlobalContext);
-    const {darkMode, setModalOpen}= globalContext;
+    const {darkMode, setModalOpen, user}= globalContext;
     
 
     
@@ -59,6 +61,10 @@ const Header = () => {
     const messageRef = useRef();
     const accountRef = useRef();
     const rightCircularIconRef = useRef({})
+    const settingRef = useRef();
+    const helpRef = useRef();
+    const feedbackRef = useRef();
+    const displayRef = useRef();
     useEffect(()=>{
         const handleCloseAutocomplete=(e) =>{
             if(inputRef.current && !inputRef.current.contains(e.target)){
@@ -79,8 +85,9 @@ const Header = () => {
                 setRightIconsClick((prev)=>{
                     return {...prev, account: false}
                 })
+            }else if(settingRef.current && !settingRef.current.contains(e.target) || helpRef.current && !helpRef.current.contains(e.target) || feedbackRef.current && !feedbackRef.current.contains(e.target)){
+                setShow({});
             }
-
         }
         document.addEventListener("mousedown",handleCloseAutocomplete);
         return () => {
@@ -93,7 +100,7 @@ const Header = () => {
     // textfield element
     const textfeild = <TextField
                     id="input-with-icon-textfield"
-                    placeholder={rightIconsClick.menu?'Search menu':rightIconsClick.message?'Search message': rightIconsClick.notification?'Search notification':'Search'}
+                    placeholder={rightIconsClick.menu?'Search menu':rightIconsClick.message?'Search Messanger':'Search'}
                     // disabled
                     sx={{
                         width: '328px',
@@ -137,6 +144,28 @@ const Header = () => {
             setModalOpen(true)
         }
          
+    }
+
+
+    // account dropdown functionality
+    const [show, setShow]= useState({setting:false, help:false, display:false, feedback:false});
+    const handleShow = (value) =>{
+        console.log("handle show", value);
+         setShow((prev)=>{
+            return {...prev,[value]: true}
+        }) 
+         setRightIconsClick((prev)=>{
+            return {...prev, account: false}
+        }) 
+    }
+    const handleHide = (value) =>{
+        console.log("handle show", value);
+        setShow((prev)=>{
+           return {...prev,[value]: false}
+       }) 
+        setRightIconsClick((prev)=>{
+           return {...prev, account: true}
+       }) 
     }
 
     let profilePic;
@@ -205,7 +234,7 @@ const Header = () => {
 
            <Tooltip
             title="Home">
-                <NavLink className='navlink' to='/'>
+                <NavLink className='navlink' to='/home'>
                     <div className='routes-div' >
                         {iconClick === 'home'?
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="#0866ff"  >
@@ -400,23 +429,144 @@ const Header = () => {
 
             rightIconsClick.notification?
             <div ref={noticicationRef} className={darkMode?'dark-background-popup dark-text header-right-notificaton':'header-right-notificaton'}>
-
+                 <div className='space-between'>
+                    <p>Notification</p>
+                    <IoIosMore className='more-icon'/>
+                 </div>
+                 <div>
+                    <span>All</span>
+                    <span>Unread</span>
+                 </div>
+                 <div className='space-between'>
+                    <span>Earlier</span>
+                    <span style={{color:'#0866ff'}}>See all</span>
+                 </div>
+                 <p>There is no notification to show.</p>
+                 
             </div>
 
             :
 
             rightIconsClick.message?
             <div ref={messageRef} className={darkMode?'dark-background-popup dark-text header-right-message':'header-right-message'}>
-
+                 <div className='space-between'>
+                    <p>Chats</p>
+                    <IoIosMore className='more-icon'/>
+                 </div>
+                 <div>
+                    {textfeild}
+                 </div>
+                 <p>There is no any available chat.</p>
             </div>
 
             :
             rightIconsClick.account?
             <div ref={accountRef} className={darkMode? 'dark-background-popup dark-text header-right-account':'header-right-account'}>
+                 <div className={darkMode?'dark-background profile-seeall':'profile-seeall'}>
+                    <div>
+                        <div>
+                           <img alt='profile' src={profilePic? profilePic: profile} />
+                        </div>
+                        <p>{user.name}</p>
+                    </div>
+                    <div>
+                        <div style={{backgroundColor:(darkMode?"#67696b":"rgb(228, 230, 235)")}} className='switch-profile'>
+                            <PiUserSwitchFill className='switch' />
+                            <p>See all profiles</p>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div onClick={()=>handleShow("setting")} className='account-option'>
+                    <div>
+                        <div className='header-right-circular'>
+                          <RiSettings5Fill className='account-option-icons'/>
+                        </div>
+                        <span>Settings & privacy</span>
+                    </div>
+                    <MdArrowForwardIos style={{opacity:'0.4'}} className='account-forward-icons' />
+                 </div>
+
+                 <div onClick={()=>handleShow("help")} className='account-option'>
+                    <div>
+                        <div className='header-right-circular'>
+                          <IoMdHelpCircle className='account-option-icons'/>
+                        </div>
+                        <span>Help & support</span>
+                    </div>
+                    <MdArrowForwardIos style={{opacity:'0.4'}} className='account-forward-icons' />
+                 </div>
+
+                 <div onClick={()=>handleShow("display")} className='account-option'>
+                    <div>
+                        <div className='header-right-circular'>
+                          <FaMoon className='account-option-icons'/>
+                        </div>
+                        <span>Display & accessibility</span>
+                    </div>
+                    <MdArrowForwardIos style={{opacity:'0.4'}} className='account-forward-icons' />
+                 </div>
+
+                 <div onClick={()=>handleShow("feedback")} className='account-option'>
+                    <div>
+                        <div className='header-right-circular'>
+                          <RiFeedbackFill className='account-option-icons'/>
+                        </div>
+                        <span>Give feedback</span>
+                    </div>
+                 </div>
+
+                 <div className='account-option'>
+                    <div>
+                        <div className='header-right-circular'>
+                          <IoLogOut className='account-option-icons'/>
+                        </div>
+                        <span>Log out</span>
+                    </div>
+                 </div>
+
+                 <div style={{padding: '4px 8px'}}>
+                    <span style={{color:darkMode?'#fff':'rgb(101, 103, 107)'}} className='bottom-text'>Privacy · Terms · Advertising · Ad Choices · Cookies · more · Meta © 2024</span>
+                 </div>
 
             </div>
-            :null
-            
+            :null    
+       }
+
+       {
+        show.setting?
+        <div ref={settingRef} className={darkMode?"dark-background-popup dark-text user-setting":"user-setting"}>
+            <div>
+                <IoArrowBackOutline onClick={()=> handleHide("setting")} className='back-icon' />
+                <p>Setting & privacy</p>
+            </div>
+             <p>This feature is comming soon!!</p>
+        </div>:
+        show.help?
+        <div ref={helpRef} className={darkMode?"dark-background-popup dark-text help-support":"help-support"}>
+             <div>
+                <IoArrowBackOutline onClick={()=> handleHide("help")} className='back-icon' />
+                <p>Help & support</p>
+            </div>
+             <p>This feature is comming soon!!</p>
+        </div>:
+        show.display?
+        <div ref={displayRef} className={darkMode?"dark-background-popup dark-text display-accessibility":"display-accessibility"}>
+             <div>
+                <IoArrowBackOutline onClick={()=> handleHide("display")} className='back-icon' />
+                <p>Display & accessibility</p>
+            </div>
+        </div>:
+        show.feedback?
+        <div ref={feedbackRef} className={darkMode?"dark-background-popup dark-text give-feedback":"give-feedback"}>
+            <div>
+                <IoArrowBackOutline onClick={()=> handleHide("feedback")} className='back-icon' />
+                <p>Give feedback</p>
+            </div>
+             <p>This feature is comming soon!!</p>
+        </div>
+        :null
+
        }
     </div>
   )
