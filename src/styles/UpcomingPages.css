@@ -89,7 +89,8 @@
 .side-bar .options >div:hover, .friends-sidebar .options div:hover{
     background-color: #f2f2f5;
 }
-.dark-header-style .options >div:hover, .dark-header-style .options div:hover{
+.dark-header-style .options >div:hover{ 
+    /*, .dark-header-style .options div:hover */
     background-color: rgb(50,52,54) !important ;
 }
 

@@ -517,7 +517,7 @@
     border-radius: 10px;
     box-sizing: border-box;
 }
-.header .user-setting >div, .header .help-support >div, .header .display-accessibility >div, .header .give-feedback >div{
+.header .user-setting >div, .header .help-support >div, .header .display-accessibility >div:first-child, .header .give-feedback >div{
     height: 60px;
     display: flex;
     align-items: center;
@@ -539,6 +539,58 @@
     text-align: center;
     line-height: 58px;
     padding-top: 50px;
+}
+.darkmode-lightmode{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+}
+.darkmode-lightmode >div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.darkmode-lightmode >div:first-child div:nth-child(2){
+    /* width: 90%; */
+    width: 275px;
+}
+.darkmode-lightmode >div:first-child div:nth-child(2) span{
+    font-size: 17px;
+    font-weight:600;
+    line-height: 20px;
+    text-align: start;
+}
+.darkmode-lightmode >div:first-child div:nth-child(2) p{
+    font-size: 15px;
+    font-weight:400;
+    line-height: 20px;
+    text-align: start;
+}
+.darkmode-circular {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e4eb;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+.darkmode-lightmode >div:nth-child(2), .darkmode-lightmode >div:nth-child(3){
+    width: 275px;
+    height: 38px;
+    padding: 5px 0px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 500;
+}
+.darkmode-lightmode input{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
 }
 
 

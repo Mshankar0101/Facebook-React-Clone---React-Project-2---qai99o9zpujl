@@ -19,7 +19,7 @@ import { IoMdHelpCircle } from "react-icons/io";
 const Header = () => {
     const location = useLocation();
     const globalContext = useContext(GlobalContext);
-    const {darkMode, setModalOpen, user}= globalContext;
+    const {darkMode,setDarkMode , setModalOpen, user}= globalContext;
     
 
     
@@ -85,7 +85,7 @@ const Header = () => {
                 setRightIconsClick((prev)=>{
                     return {...prev, account: false}
                 })
-            }else if(settingRef.current && !settingRef.current.contains(e.target) || helpRef.current && !helpRef.current.contains(e.target) || feedbackRef.current && !feedbackRef.current.contains(e.target)){
+            }else if(settingRef.current && !settingRef.current.contains(e.target) || helpRef.current && !helpRef.current.contains(e.target) || feedbackRef.current && !feedbackRef.current.contains(e.target) || displayRef.current && !displayRef.current.contains(e.target)){
                 setShow({});
             }
         }
@@ -174,6 +174,22 @@ const Header = () => {
         localStorage.removeItem('signUpUser');
         navigate('/login-signup');
     }
+
+
+
+    // theme logic
+    const handleThemeChange = (value)=>{
+        if(value === "off"){
+            setDarkMode(false);
+            localStorage.setItem("fbDarkmode",false);
+        }else{
+            setDarkMode(true);
+            localStorage.setItem("fbDarkmode",true);
+        }
+
+    }
+
+
 
     let profilePic;
 
@@ -558,10 +574,29 @@ const Header = () => {
              <p>This feature is comming soon!!</p>
         </div>:
         show.display?
-        <div ref={displayRef} className={darkMode?"dark-background-popup dark-text display-accessibility":"display-accessibility"}>
+        <div ref={displayRef}  className={darkMode?"dark-background-popup dark-text display-accessibility":"display-accessibility"}>
              <div>
                 <IoArrowBackOutline onClick={()=> handleHide("display")} className='back-icon' />
                 <p>Display & accessibility</p>
+            </div>
+            <div className='darkmode-lightmode'>
+                <div>
+                        <div className='darkmode-circular'>
+                          <FaMoon color='#050505' className='account-option-icons'/>
+                        </div>
+                        <div>
+                            <span>Dark mode</span>
+                            <p>Adjust the appearance of Facebook to reduce glare and give your eyes a break.</p>
+                        </div>
+                </div>
+                <div>
+                    <span>Off</span>
+                    <input checked={!darkMode} onChange={()=>handleThemeChange("off")} type='radio'/>
+                </div>
+                <div>
+                    <span>On</span>
+                    <input checked={darkMode} onChange={(e)=>handleThemeChange("on")} type='radio'/>
+                </div>
             </div>
         </div>:
         show.feedback?
