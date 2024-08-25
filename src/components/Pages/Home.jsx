@@ -32,7 +32,7 @@ const Home = () => {
         .then((response) => response.text())
         .then((result) =>{
             const newResult = JSON.parse(result);
-            console.log(newResult.data);
+            // console.log(newResult.data);
             setPosts(newResult.data);
         })
         .catch((error) => console.error(error));

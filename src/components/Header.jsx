@@ -168,6 +168,13 @@ const Header = () => {
        }) 
     }
 
+
+    const logoutUser = ()=>{
+        localStorage.removeItem('user');
+        localStorage.removeItem('signUpUser');
+        navigate('/login-signup');
+    }
+
     let profilePic;
 
   return (
@@ -517,7 +524,7 @@ const Header = () => {
                  </div>
 
                  <div className='account-option'>
-                    <div>
+                    <div onClick={logoutUser}>
                         <div className='header-right-circular'>
                           <IoLogOut className='account-option-icons'/>
                         </div>

@@ -29,7 +29,7 @@
     line-height: 30px;
 }
 
-.name-setting-search >div:first-child{
+.name-setting-search >div:first-child, .friends-sidebar >div:first-child{
     height: 36px;
     padding: 7px 16px;
     display: flex;
@@ -41,7 +41,7 @@
    padding: 0px 8px 15px;
    box-sizing: border-box;
 } 
-.name-setting-search >div:first-child h1{
+.name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1{
     margin: 0px;
     font-size: 24px;
     line-height: 20px;
@@ -69,12 +69,12 @@
 
 
 
-.side-bar .options{
+.side-bar .options, .friends-sidebar .options{
  display: flex;
  flex-direction: column;
  gap: 2px;
 }
-.side-bar .options >div{
+.side-bar .options >div , .friends-sidebar .options >div{
    width: 100%;
    padding: 0px 8px;
    height: 44px;
@@ -86,15 +86,14 @@
    box-sizing: border-box;
    cursor: not-allowed;
 }
-.side-bar .options >div:hover{
-    /* background-color: #e0e4eb; */
+.side-bar .options >div:hover, .friends-sidebar .options div:hover{
     background-color: #f2f2f5;
 }
-.dark-header-style .options >div:hover{
+.dark-header-style .options >div:hover, .dark-header-style .options div:hover{
     background-color: rgb(50,52,54) !important ;
 }
 
-.side-bar .options .icon-div{
+.side-bar .options .icon-div, .friends-sidebar .options .icon-div{
     width: 36px;
     height: 36px;
     background-color: #e0e4eb;
@@ -102,7 +101,7 @@
     /* background-color: #f2f2f2; */
     border-radius: 50%;
 }
-.side-bar .options .icons{
+.side-bar .options .icons, .friends-sidebar .options .icons{
     height: 20px;
     width: 20px;
     background-repeat: no-repeat;
@@ -110,7 +109,7 @@
     display: inline-block;
     margin: 8px;
 } 
-.side-bar .options p{
+.side-bar .options p, .friends-sidebar .options p{
     margin: 0px;
     font-size: .9375rem;
     line-height: 1.33;
@@ -204,6 +203,115 @@
 
 
 
+/* friends page style */
+.friends-page{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: #f0f2f5;
+    color: #050505;
+}
+.friends-page .friends-sidebar{
+   width: 100%;
+   max-width: 360px;
+   /* height: 100vh; */
+   padding: 10px 8px 0px;
+   box-sizing: border-box;
+   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+   background-color: #fff;
+}
+.friends-page .friends-card{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 20px 32px;
+    box-sizing: border-box;
+}
+.friends-page .friends-card >p{
+    margin: 0px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 30px;
+}
+.friends-card-main{
+    margin: 40px 0px 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.friends-card-main .card{
+    width: 170px;
+    height: 250px;
+    border-radius: 10px;
+    cursor: not-allowed;
+    box-shadow: 0px 0px 10px 0px  rgba(0,0,0,0.2);
+    background-color: #fff;
+}
+.friends-card-main .card div:first-child{
+    width: 170px;
+    height: 80%;
+    background-color: #f7f7f7;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.friends-card-main .card div:first-child img{
+    width: 170px;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.friends-card-main .card div:nth-child(2){
+    width: 170px;
+    width: 170px;
+    height: 20%;
+    padding: 10px 16px;
+    box-sizing: border-box;
+}
+
+.friends-card-main .card div:nth-child(2) p{
+    margin: 0px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 138px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 30px; 
+}
+
+.friends-icon1{
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yf/r/qaAHTAUiLRy.png");
+    background-position: 0px -155px;
+}
+.friends-icon2{
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/hSUwXyIysbX.png");
+    background-position: 0px -243px;
+}
+.friends-icon3{
+   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/hSUwXyIysbX.png");
+   background-position: 0px -159px;
+}
+.friends-icon4{
+   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/hSUwXyIysbX.png");
+   background-position: 0px -201px;
+}
+.friends-icon5{
+   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/dgWXjHYHHja.png");
+   background-position: 0px -138px;
+}
+.friends-icon6{
+   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/hSUwXyIysbX.png");
+   background-position: 0px -201px;
+}
+
+
+
 
 
 
@@ -216,21 +324,41 @@
         max-width: unset;
         height: unset;
     }
-    .name-setting-search >div:first-child h1{
+    .name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1{
         font-size: 18px;
     }
-    .side-bar .options{
+    .side-bar .options, .friends-sidebar .options{
         flex-direction:row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
         gap: 10px;
     }
-    .side-bar .options >div{
+    .side-bar .options >div, .friends-sidebar .options >div{
         width: unset;
     }
     .upcoming-pages .content p{
         font-size: 22px;
+    }
+
+
+    /* friends page */
+    .friends-page{
+        flex-direction: column;
+    }
+    .friends-page .friends-sidebar{
+        max-width: unset;
+        padding: 16px;
+        box-shadow: unset;
+     }
+     .friends-page .friends-card{
+      
+        padding: 20px 10px;
+        height: unset;
+        overflow-y: unset;
+    }
+    .friends-page .friends-card >p{
+        font-size: 20px;
     }
     
 }

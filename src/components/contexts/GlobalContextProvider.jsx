@@ -3,7 +3,7 @@ import { GlobalContext } from './Contexts';
 import { json } from 'react-router-dom';
 
 const GlobalContextProvider = ({children}) => { 
-  const [darkMode, setDarkMode]= useState(false); 
+  const [darkMode, setDarkMode]= useState(true); 
   const [resolution, setResolution] = useState({ width: window.innerWidth, height: window.innerHeight });
 
   // logged in user details

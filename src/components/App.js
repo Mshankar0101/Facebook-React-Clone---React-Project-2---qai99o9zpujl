@@ -8,6 +8,7 @@ import Pages from './Pages/Pages.jsx';
 import Vedio from './Pages/Vedio.jsx';
 import MarketPlace from './Pages/MarketPlace.jsx'
 import Groups from './Pages/Groups.jsx';
+import Friends from './Pages/Friends.jsx';
 import { GlobalContext } from './contexts/Contexts';
 import LoginSignup from './LoginSignup.jsx';
 import Navigator from './Navigator.jsx';
@@ -53,7 +54,7 @@ const App = () => {
               <Route path='/video' element={<Navigator><Vedio/></Navigator>}/>
               <Route path='/marketplace' element={<Navigator><MarketPlace/></Navigator>}/>
               <Route path='/groups' element={<Navigator><Groups/></Navigator>}/>
-  
+              <Route path='/friends' element={<Navigator><Friends/></Navigator>}/>
           </Routes>
        </div>
     </div>

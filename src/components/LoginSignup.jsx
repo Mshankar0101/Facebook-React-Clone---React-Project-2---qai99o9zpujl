@@ -60,18 +60,26 @@ const LoginSignup = ()=>{
       fetch("https://academics.newtonschool.co/api/v1/user/signup", requestOptions)
       .then((response) => {
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+          if(response.status === 403){
+            setAlertMessage("Email already exists");
+            
+          }else{
+            setAlertMessage("Failed to signup");
+           
+          }
         }
             return response.json();
         })
         .then((result) => {
-            console.log(result);
-            const signUpUser = {...signupDetails,'fbToken':result.token, dob: dateOfBirth };
-            console.log("signUpUser",signUpUser);
-            localStorage.setItem('signUpUser',JSON.stringify(signUpUser));
-            setUser(signUpUser);
-            setAlertMessage('');
-            setOpenSignup(false); 
+           if(result.status !== "fail"){
+             console.log(result);
+             const signUpUser = {...signupDetails,'fbToken':result.token, dob: dateOfBirth };
+             console.log("signUpUser",signUpUser);
+             localStorage.setItem('signUpUser',JSON.stringify(signUpUser));
+             setUser(signUpUser);
+             setAlertMessage('');
+             setOpenSignup(false); 
+           }
         })
         .catch((error) => {
             console.error("Error:", error.message);
