@@ -194,7 +194,7 @@ const Header = () => {
     let profilePic;
 
   return (
-    <div style={{display:(location.pathname === '/login-signup'?'none':'flex')}} className={darkMode?'header dark-header-style':'header'}>
+    <div style={{display:(location.pathname === '/login-signup'?'none':location.pathname === '/menu'?'none':'flex')}} className={darkMode?'header dark-header-style':'header'}>
        <div className='logo-search'>
           <SiFacebook style={{height:'40px', width:'40px',color:'#0866ff',borderRadius:'50%'}} />
           <TextField

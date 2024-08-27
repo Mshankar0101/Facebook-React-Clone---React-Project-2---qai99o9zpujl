@@ -12,6 +12,7 @@ import Friends from './Pages/Friends.jsx';
 import { GlobalContext } from './contexts/Contexts';
 import LoginSignup from './LoginSignup.jsx';
 import Navigator from './Navigator.jsx';
+import Menu from '../components/Menu.jsx'
 
 
 const App = () => {
@@ -44,7 +45,7 @@ const App = () => {
         <Header/>
       }
 
-       <div style={{paddingTop:(resolution.width < 850? 'unset':location.pathname==='/login-signup'?'unset':'56px')}}>
+       <div style={{paddingTop:(resolution.width < 850? 'unset':location.pathname==='/login-signup'?'unset':location.pathname==='/menu'?'unset':'56px')}}>
           <Routes>
 
               <Route path="/" element={<Navigate replace to="/home" />} />
@@ -55,6 +56,7 @@ const App = () => {
               <Route path='/marketplace' element={<Navigator><MarketPlace/></Navigator>}/>
               <Route path='/groups' element={<Navigator><Groups/></Navigator>}/>
               <Route path='/friends' element={<Navigator><Friends/></Navigator>}/>
+              <Route path='/menu' element={<Navigator><Menu/></Navigator>}/>
           </Routes>
        </div>
     </div>

@@ -1,0 +1,221 @@
+.menu-page{
+    width: 100%;
+    height: 100%;
+    /* overflow-y: scroll; */
+    background-color: #f0f2f5;
+    color: #050505;
+    padding: 0px 15px 15px; 
+    /* added padding , check darkmode of option box then make lower div after options */
+    box-sizing: border-box;
+}
+ .menu-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    background-color: #f0f2f5;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    box-shadow: 0p 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+.menu-heading span{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-left:10px;
+}
+.menu-heading .back-icon{
+   height: 25px;
+   width: 30px;
+   cursor: pointer;
+}
+.menu-heading .search-icon{
+    height: 20px;
+    width: 20px;
+ }
+.menu-heading >div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+}
+.menu-heading div:nth-child(2){
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    /* background-color: #f0f2f5; */
+    background-color: #bbc0c7;
+    display: grid;
+    place-items: center;
+    cursor: not-allowed;
+}
+.menu-heading div:nth-child(2):hover{
+    background-color:#cacdcf !important
+}
+.menu-page .view-profile{
+    width: 100%;
+    height: 67px;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 45px 0px 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+}
+.menu-page .view-profile div:first-child{
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+}
+.menu-page .view-profile div:first-child img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.menu-page .view-profile span{
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 20px;
+}
+.menu-page .view-profile p{
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: rgb(101, 103, 107);
+}
+
+.menu-page .menu-options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.menu-page .menu-options >div{
+    width: 48%;
+    height: 67px;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+}
+.dark-parent .menu-options >div{
+    background-color: rgb(50,52,54) !important;
+}
+.menu-page .menu-options >div p{
+    margin: 0px;
+    font-size: 16px;
+    line-height: 15px;
+    font-weight: 400;
+}
+
+
+.menu-page .menu-options .icon{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.menu-page .menu-options .icon1{
+    background-position: 0 -111px;
+}
+.menu-page .menu-options .icon2{
+    background-position: 0 -259px;
+}
+.menu-page .menu-options .icon3{
+    background-position: 0 -370px;
+}
+.menu-page .menu-options .icon4{
+    background-position: 0 -37px;
+}
+.menu-page .menu-options .icon5{
+    background-position: 0 -481px;
+}
+.menu-page .menu-options .icon6{
+    background-position: 0 -148px;
+}
+.menu-page .menu-options .icon7{
+    background-position: 0 -407px;
+}
+.menu-page .menu-options .icon8{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/ATlxuj_J5ty.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.menu-page .menu-options .icon9{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/Jr0q8qKF2-Y.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.menu-page .menu-options .icon10{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yV/r/vTDQ3deAsEh.png'); 
+    background-repeat: no-repeat;
+    background-position: 0 -37px;
+    background-size: auto;
+    display: inline-block;
+}
+.menu-page .menu-options .icon11{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/GJ4EaivDaSj.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+.menu-page .menu-options .icon12{
+    width: 36px;
+    height: 36px;
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/eECk3ceTaHJ.png'); 
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: inline-block;
+}
+
+.menu-page .setting, .menu-page .help-support, .menu-page .dark-mode, .menu-page .logout{
+    height: 48px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}
+.menu-page .menu-icon{
+    height: 30px;
+    width: 30px;
+}
+.menu-page .dark-mode >div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}

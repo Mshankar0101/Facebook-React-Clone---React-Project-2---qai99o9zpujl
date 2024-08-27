@@ -1,4 +1,4 @@
-import React, { useContext,useEffect,useState } from 'react';
+import React, { useContext,useEffect,useRef,useState } from 'react';
 import '../../styles/Posts.css';
 import { GlobalContext } from '../contexts/Contexts';
 import profile from '../images/profile.jpg';
@@ -11,6 +11,7 @@ import { BiMessageRounded } from "react-icons/bi";
 import { PiShareFatLight } from "react-icons/pi";
 import { Modal, TextField, InputAdornment } from '@mui/material';
 import { IoMdSend } from "react-icons/io";
+import { MdDeleteForever } from "react-icons/md";
 
 const Posts = ({post, fetchPosts}) => {
     const {darkMode, user, likedPosts, setLikedPosts}= useContext(GlobalContext);
@@ -47,7 +48,7 @@ const Posts = ({post, fetchPosts}) => {
      }
 
 
-    // handling post comment
+    // handling post comment & likes
     const [comment, setComment] = useState('');
     const handePostComment = ()=>{
         if(comment !== ''){
@@ -141,6 +142,90 @@ const Posts = ({post, fetchPosts}) => {
     }
 
 
+    // delete comment
+    const [moreOption, setMoreOption]= useState({commentMoreOption:false,postMoreOption:false,modalMoreOption:false});
+    const handleCommentMoreClick = ()=>{
+        setMoreOption((prev)=>{
+           return {...prev, commentMoreOption:!moreOption.commentMoreOption};
+        });
+    }
+    const handlePostMoreClick = ()=>{
+        setMoreOption((prev)=>{
+           return {...prev, postMoreOption:!moreOption.postMoreOption};
+        });
+    }
+    const handlePostModalMoreClick = ()=>{
+        setMoreOption((prev)=>{
+           return {...prev, modalMoreOption:!moreOption.modalMoreOption};
+        });
+    }
+
+    const handleDeleteCommment = (id)=>{
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
+
+        const requestOptions = {
+        method: "DELETE",
+        headers: myHeaders,
+        redirect: "follow"
+        };
+
+        fetch(`https://academics.newtonschool.co/api/v1/facebook/comment/${id}`, requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then((result) =>{ 
+            console.log(result);
+            setMoreOption((prev)=>{
+                return {...prev, commentMoreOption:!moreOption.commentMoreOption};
+             });
+            getAllComments();
+            fetchPosts();
+        })
+        .catch((error) => console.error(error));
+     }
+
+
+
+    //  implimenting mousedown event for more popup container
+    const postMoreRef = useRef();
+    const postModalMoreRef = useRef();
+    const commentMoreRef = useRef();
+    const moreBtnRef = useRef({});
+    useEffect(()=>{
+        const handleClose=(e) =>{
+            if(postMoreRef.current && !postMoreRef.current.contains(e.target) && !moreBtnRef.current.postMore?.contains(e.target) ){
+                setMoreOption((prev)=>{
+                    return {...prev, postMoreOption:false};
+                 });
+                 console.log("post")
+            }else if(postModalMoreRef.current && !postModalMoreRef.current.contains(e.target) &&  !moreBtnRef.current.modalMore?.contains(e.target)){
+                setMoreOption((prev)=>{
+                    return {...prev, modalMoreOption:false};
+                 });
+                 console.log("modal")
+            }
+            else if(commentMoreRef.current && !commentMoreRef.current.contains(e.target) && !moreBtnRef.current.commentMore?.contains(e.target)){
+                setMoreOption((prev)=>{
+                    return {...prev, commentMoreOption:false};
+                 });
+                 console.log("comment")
+            }
+
+        }
+        document.addEventListener("mousedown",handleClose);
+        return () => {
+            document.removeEventListener("mousedown", handleClose);
+            };
+    },[])
+     
+    useEffect(()=>{
+        console.log(moreOption)
+    },[moreOption]);
 
     let profilePic;
   return (
@@ -153,9 +238,36 @@ const Posts = ({post, fetchPosts}) => {
                 <p>{post.author.name}</p>
                 <p>{post.createdAt}</p>
             </div>
-            <div>
+            <div ref={(el) => (moreBtnRef.current.postMore = el)} onClick={handlePostMoreClick}>
                <IoIosMore className='posts-more-icon'/>
-            </div>
+            </div> 
+            {
+                moreOption.postMoreOption?
+                <div ref={postMoreRef} className={darkMode?'dark-background-popup post-more-options':"post-more-options"}>
+                    <div>
+                        <div className='icon icon1'></div>
+                        <div>
+                            <p>Save post</p>
+                            <p style={{fontSize:'12px', color:'rgb(101, 103, 107)'}}>Add this to your saved items.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div className='icon icon2'></div>
+                        <div>
+                            <p>Hide post</p>
+                            <p>See fever posts like this.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div className='icon icon3'></div>
+                        <div>
+                           <p>Report post</p>
+                           <p>We won't let user who reported this.</p>
+                        </div>
+                    </div>
+                </div>
+                :null
+            }
         </div>
         <div className='post-content'>
             <p>{post.content}</p>
@@ -225,9 +337,36 @@ const Posts = ({post, fetchPosts}) => {
                                 <p>{post.author.name}</p>
                                 <p>{post.createdAt}</p>
                             </div>
-                            <div>
+                            <div ref={(el) => (moreBtnRef.current.modalMore = el)} onClick={handlePostModalMoreClick}>
                             <IoIosMore className='posts-more-icon'/>
                             </div>
+                            {
+                                moreOption.modalMoreOption?
+                                <div ref={postModalMoreRef} className={darkMode?'dark-background-popup post-more-options':"post-more-options"}>
+                                    <div>
+                                        <div className='icon icon1'></div>
+                                        <div>
+                                            <p>Save post</p>
+                                            <p style={{fontSize:'12px', color:'rgb(101, 103, 107)'}}>Add this to your saved items.</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className='icon icon2'></div>
+                                        <div>
+                                            <p>Hide post</p>
+                                            <p>See fever posts like this.</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className='icon icon3'></div>
+                                        <div>
+                                        <p>Report post</p>
+                                        <p>We won't let user who reported this.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                :null
+                            }
                         </div>
                         <div className='post-content'>
                             <p>{post.content}</p>
@@ -286,6 +425,19 @@ const Posts = ({post, fetchPosts}) => {
                                                     <span>Share</span>
                                                 </div>
                                             </div>
+                                            <div ref={(el) => (moreBtnRef.current.commentMore = el)} onClick={handleCommentMoreClick} style={{display:comment.author_details._id === user.id?'block':'none'}}>
+                                                <IoIosMore style={{cursor:'pointer'}} className='posts-more-icon'/> 
+                                                {
+                                                    moreOption.commentMoreOption?
+                                                    <div ref={commentMoreRef} onClick={()=>handleDeleteCommment(comment._id)} className={darkMode?'dark-background comment-more-option dark-text':'comment-more-option'}>
+                                                        <MdDeleteForever style={{height:'20px',width:'20px' }}/>
+                                                        <p style={{margin:'0px',fontWeight:400}}>Delete comment</p>
+                                                    </div>
+                                                    :null
+                                                }
+                                            </div>
+                                             
+                                            
                                         </div>
                                      )
                                 })

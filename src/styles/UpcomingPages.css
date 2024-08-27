@@ -211,7 +211,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     background-color: #f0f2f5;
-    color: #050505;
+    color: #050505; 
 }
 .friends-page .friends-sidebar{
    width: 100%;
@@ -324,6 +324,7 @@
     .upcoming-pages .side-bar{
         max-width: unset;
         height: unset;
+        box-shadow: unset;
     }
     .name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1{
         font-size: 18px;

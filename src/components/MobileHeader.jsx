@@ -32,7 +32,7 @@ const MobileHeader = () => {
     },[location.pathname]);
     
   return (
-    <div style={{display:(location.pathname === '/login-signup'?'none':'block')}} className={darkMode?'dark-header-style header-mobile ':'header-mobile'}>
+    <div style={{display:(location.pathname === '/login-signup'?'none':location.pathname === '/menu'?'none':'block')}} className={darkMode?'dark-header-style header-mobile ':'header-mobile'}>
           <div className='logo-search-menu'>
                 <div>
                     <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/48MsiA6m666.png'  alt='fb-logo' />
@@ -41,7 +41,7 @@ const MobileHeader = () => {
                     <div onClick={()=> navigate('/search')} className={darkMode?'dark-background circular-bg':"circular-bg"}>
                          <FaSearch className='search-menu-icons'  />
                     </div>
-                    <div className={darkMode?'dark-background circular-bg':"circular-bg"}>
+                    <div onClick={()=>navigate('/menu')} className={darkMode?'dark-background circular-bg':"circular-bg"}>
                        <RiMenuFill style={{height:'30px',width:'30px'}} className='search-menu-icons' />
                     </div>
                 </div>

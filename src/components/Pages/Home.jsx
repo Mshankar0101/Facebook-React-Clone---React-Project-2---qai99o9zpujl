@@ -39,7 +39,7 @@ const Home = () => {
    }
 
    useEffect(()=>{
-    fetchPosts();
+    fetchPosts(); 
    },[])
 
   let profilePic;

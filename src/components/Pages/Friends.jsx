@@ -16,7 +16,7 @@ const Friends = () => {
         redirect: "follow"
         };
         
-        fetch("https://academics.newtonschool.co/api/v1/facebook/post?limit=200", requestOptions)
+        fetch("https://academics.newtonschool.co/api/v1/facebook/post?limit=100", requestOptions)
         .then((response) => response.text())
         .then((result) =>{
             const newResult = JSON.parse(result);
@@ -25,6 +25,7 @@ const Friends = () => {
         })
         .catch((error) => console.error(error));
    }
+
 
    useEffect(()=>{
     fetchPosts();
@@ -87,7 +88,7 @@ const Friends = () => {
                   {
                       friends.map((user,i)=>{   
                       if(user.author.profileImage !== null){
-                        return(  <div className={darkMode?'dark-background card':'card'}>
+                        return(  <div key={i} className={darkMode?'dark-background card':'card'}>
                             <div>
                               <img src={user.author.profileImage} alt='profile'/>
                             </div>
