@@ -3,7 +3,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: #fff;
+    background-color: #f0f2f5;
     color: #050505;
 }
 .upcoming-pages .side-bar{
@@ -13,6 +13,7 @@
    padding: 10px 8px 0px;
    box-sizing: border-box;
    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+   background-color: #fff;
 }
 .upcoming-pages .content{
     width: 100%;
@@ -29,7 +30,7 @@
     line-height: 30px;
 }
 
-.name-setting-search >div:first-child, .friends-sidebar >div:first-child{
+.name-setting-search >div:first-child, .friends-sidebar >div:first-child, .pages-sidebar .name-setting{
     height: 36px;
     padding: 7px 16px;
     display: flex;
@@ -41,7 +42,7 @@
    padding: 0px 8px 15px;
    box-sizing: border-box;
 } 
-.name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1{
+.name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1, .pages-sidebar .name-setting h1{
     margin: 0px;
     font-size: 24px;
     line-height: 20px;
@@ -69,12 +70,12 @@
 
 
 
-.side-bar .options, .friends-sidebar .options{
+.side-bar .options, .friends-sidebar .options, .pages-sidebar .options{
  display: flex;
  flex-direction: column;
  gap: 2px;
 }
-.side-bar .options >div , .friends-sidebar .options >div{
+.side-bar .options >div , .friends-sidebar .options >div, .pages-sidebar .options >div{
    width: 100%;
    padding: 0px 8px;
    height: 44px;
@@ -86,15 +87,15 @@
    box-sizing: border-box;
    cursor: not-allowed;
 }
-.side-bar .options >div:hover, .friends-sidebar .options div:hover{
+.side-bar .options >div:hover, .friends-sidebar .options div:hover, .pages-sidebar .options >div:hover{
     background-color: #f2f2f5;
 }
-.dark-header-style .options >div:hover{ 
+.dark-header-style .options >div:hover, .dark-header-style .options >div:hover{ 
     /*, .dark-header-style .options div:hover */
     background-color: rgb(50,52,54) !important ;
 }
 
-.side-bar .options .icon-div, .friends-sidebar .options .icon-div{
+.side-bar .options .icon-div, .friends-sidebar .options .icon-div, .pages-sidebar .options .icon-div {
     width: 36px;
     height: 36px;
     background-color: #e0e4eb;
@@ -102,7 +103,7 @@
     /* background-color: #f2f2f2; */
     border-radius: 50%;
 }
-.side-bar .options .icons, .friends-sidebar .options .icons{
+.side-bar .options .icons, .friends-sidebar .options .icons, .pages-sidebar .options .icons{
     height: 20px;
     width: 20px;
     background-repeat: no-repeat;
@@ -110,7 +111,7 @@
     display: inline-block;
     margin: 8px;
 } 
-.side-bar .options p, .friends-sidebar .options p{
+.side-bar .options p, .friends-sidebar .options p, .pages-sidebar .options p{
     margin: 0px;
     font-size: .9375rem;
     line-height: 1.33;
@@ -179,7 +180,7 @@
     background-position: 0px -21px;
 }
 
-.side-bar .create{
+.side-bar .create, .pages-sidebar .create{
    width: 100%;
    height: 36px;
    padding: 0px 8px;
@@ -190,14 +191,16 @@
    color: rgb(56, 88, 152);
    cursor: not-allowed;
 }
-.side-bar .create:hover{
+.side-bar .create p:hover, .pages-sidebar .create p:hover{
     background-color: #f2f2f5;
 }
-.side-bar .create p{
+.side-bar .create p, .pages-sidebar .create p{
     margin: 0px;
+    width: 100%;
     font-size: 15px;
     font-weight: 600;
     line-height: 36px;
+    border-radius: 10px;
     vertical-align:middle;
     text-align: center;
 }
@@ -205,7 +208,7 @@
 
 
 /* friends page style */
-.friends-page{
+.friends-page, .pages-container{
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -213,7 +216,7 @@
     background-color: #f0f2f5;
     color: #050505; 
 }
-.friends-page .friends-sidebar{
+.friends-page .friends-sidebar, .pages-container .pages-sidebar{
    width: 100%;
    max-width: 360px;
    /* height: 100vh; */
@@ -222,16 +225,16 @@
    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
    background-color: #fff;
 }
-.friends-page .friends-card{
+.friends-page .friends-card, .pages-container .pages-card{
     width: 100%;
     height: 100%;
     overflow-y: scroll;
     padding: 20px 32px;
     box-sizing: border-box;
 }
-.friends-page .friends-card >p{
+.friends-page .friends-card >p, .pages-container .pages-card p{
     margin: 0px;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 700;
     line-height: 30px;
 }
@@ -313,6 +316,118 @@
 
 
 
+/* pages */
+.pages-sidebar >div:first-child{
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(181, 184, 187);
+    margin-bottom: 5px;
+}
+.pages-icon1{
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/yMK5nNN_w1i.png"); 
+    background-position:-23px -118px;
+}
+.pages-icon2{
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y5/r/hfjAwSdyy_q.png"); 
+    background-position:0px -42px;
+}
+.pages-icon3{
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/eZ2Fmf180HH.png"); 
+    background-position: 0px -511px;
+}
+.pages-icon4{
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yO/r/mH_436-pOhn.png"); 
+    background-position:0px -163px;
+}
+
+.pages-container .pages-card-main{
+    margin: 40px 0px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.pages-card-main .card{
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px  rgba(0,0,0,0.1);
+    background-color: #fff;
+    padding: 16px;
+    box-sizing: border-box;
+   
+}
+.pages-card-main .card >div{
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+.pages-card-main .card >div:first-child .profile{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+.pages-card-main .card >div:first-child .profile img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.pages-card-main .card >div:first-child p{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+}
+.pages-card-main .card >div:nth-child(2) >div:first-child{
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(235, 245, 255);
+    color: rgb(56, 88, 152);
+    padding: 8px 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.pages-card-main .card >div:nth-child(2) >div:nth-child(2){
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(228, 230, 235);
+    padding: 8px 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: not-allowed;
+}
+.dark-parent .pages-card-main .card >div:nth-child(2) >div:first-child{
+    background-color: rgba(29, 133, 252, 0.2);
+    color: rgb(173, 198, 247) ;
+}
+.pages-card-main .card >div:nth-child(2) >div:hover{
+    background-color: #f2f2f2;
+}
+.dark-parent .pages-card-main .card >div:nth-child(2) >div:hover{
+    background-color: rgb(161, 171, 182,0.5) !important ;
+}
+.page-card-icon{
+    width: 20px;
+    height: 20px;
+}
+.pages-card-main .card >div:nth-child(2) >div span{
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
 
 
 
@@ -322,21 +437,22 @@
         flex-direction: column;
     }
     .upcoming-pages .side-bar{
+        margin-top: 3px;
         max-width: unset;
         height: unset;
         box-shadow: unset;
     }
-    .name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1{
+    .name-setting-search >div:first-child h1, .friends-sidebar >div:first-child h1, .pages-sidebar .name-setting h1{
         font-size: 18px;
     }
-    .side-bar .options, .friends-sidebar .options{
+    .side-bar .options, .friends-sidebar .options, .pages-sidebar .options{
         flex-direction:row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
         gap: 10px;
     }
-    .side-bar .options >div, .friends-sidebar .options >div{
+    .side-bar .options >div, .friends-sidebar .options >div, .pages-sidebar .options >div{
         width: unset;
     }
     .upcoming-pages .content p{
@@ -345,21 +461,21 @@
 
 
     /* friends page */
-    .friends-page{
+    .friends-page, .pages-container{
         flex-direction: column;
     }
-    .friends-page .friends-sidebar{
+    .friends-page .friends-sidebar, .pages-container .pages-sidebar{
         max-width: unset;
         padding: 16px;
         box-shadow: unset;
+        margin-top: 3px;
      }
-     .friends-page .friends-card{
-      
+     .friends-page .friends-card, .pages-container .pages-card{
         padding: 20px 10px;
         height: unset;
         overflow-y: unset;
     }
-    .friends-page .friends-card >p{
+    .friends-page .friends-card >p, .pages-container .pages-card p{
         font-size: 20px;
     }
     

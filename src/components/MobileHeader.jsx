@@ -74,8 +74,8 @@ const MobileHeader = () => {
                             </div>
                         </NavLink>
                     </Tooltip>
-                    <Tooltip title="Vedio">
-                        <NavLink className='navlink' to='vedio'>
+                    <Tooltip title="video">
+                        <NavLink className='navlink' to='video'>
                             <div style={{borderBottom:(iconClick ==='vedio'?'3px solid #0866ff':'none')}} className='routes-div'>
                                 {iconClick=== 'vedio'?
                                 <svg viewBox="0 0 24 24" width="24" height="24" fill='#0866ff' >

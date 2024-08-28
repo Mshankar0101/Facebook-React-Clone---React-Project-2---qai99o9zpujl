@@ -88,9 +88,11 @@ const Friends = () => {
                   {
                       friends.map((user,i)=>{   
                       if(user.author.profileImage !== null){
+                        let url = user.author.profileImage;
+                        let newUrl = url.replace("cloudflare-ipfs.com","ipfs.io")
                         return(  <div key={i} className={darkMode?'dark-background card':'card'}>
                             <div>
-                              <img src={user.author.profileImage} alt='profile'/>
+                              <img src={newUrl} alt='profile' loading="lazy"/>
                             </div>
                             <div>
                                 <p>{user.author.name}</p>

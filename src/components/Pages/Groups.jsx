@@ -71,7 +71,7 @@ const Groups = () => {
                 
             </div>
             <div className={darkMode?'dark-background dark-text create':'create'}>
-               <p>+ Create new group</p>
+               <p style={{color:'rgb(56, 88, 152)'}}>+ Create new group</p>
             </div>
         </div>
         <div className='content'>

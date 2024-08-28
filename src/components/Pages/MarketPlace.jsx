@@ -82,7 +82,7 @@ const MarketPlace = () => {
                  </div>
             </div>
             <div className={darkMode?'dark-background dark-text create':'create'}>
-               <p>+ Create new Listing</p>
+               <p style={{color:'rgb(56, 88, 152)'}}>+ Create new Listing</p>
             </div>
         </div>
         <div className='content'>

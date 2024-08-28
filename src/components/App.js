@@ -13,6 +13,7 @@ import { GlobalContext } from './contexts/Contexts';
 import LoginSignup from './LoginSignup.jsx';
 import Navigator from './Navigator.jsx';
 import Menu from '../components/Menu.jsx'
+import CreatePage from './Pages/CreatePage.jsx';
 
 
 const App = () => {
@@ -51,7 +52,8 @@ const App = () => {
               <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path='/login-signup' element={<LoginSignup/>}/>
               <Route path='/home' element={<Navigator><Home/></Navigator>}/>
-              <Route path='/pages' element={<Navigator><Pages/></Navigator>}/>
+              <Route path='/pages/*' element={<Navigator><Pages/></Navigator>}/>
+              <Route path='/pages/create' element={<Navigator><CreatePage/></Navigator>}/>
               <Route path='/video' element={<Navigator><Vedio/></Navigator>}/>
               <Route path='/marketplace' element={<Navigator><MarketPlace/></Navigator>}/>
               <Route path='/groups' element={<Navigator><Groups/></Navigator>}/>
