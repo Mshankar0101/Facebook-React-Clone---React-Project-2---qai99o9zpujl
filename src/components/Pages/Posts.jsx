@@ -223,9 +223,9 @@ const Posts = ({post, fetchPosts}) => {
             };
     },[])
      
-    useEffect(()=>{
-        console.log(moreOption)
-    },[moreOption]);
+    // useEffect(()=>{
+    //     console.log(moreOption)
+    // },[moreOption]);
 
     let profilePic;
   return (

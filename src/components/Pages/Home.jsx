@@ -48,7 +48,7 @@ const Home = () => {
       
        <div style={{height:`${resolution.height-56}px`, display:(resolution.width < 1100? 'none':'block')}} className={darkMode?'dark-mode-hover home-left-container': 'home-left-container'}>
           <div>
-            <div className='profile'>
+            <div onClick={()=> navigate('/profile')} className='profile'>
                 <img alt='profile' src={profilePic? profilePic:profile} />
             </div>
             <p>{user.name}</p>
@@ -162,7 +162,7 @@ const Home = () => {
               <CreatePost/>
               <div className='posts'>
                 {posts.map((postData,i)=>{   
-                    if(postData.images[0] && postData.author.profileImage !== null){
+                    if(postData.images[0] && postData.author.profileImage !== null || postData.author._id === user.id){
                         return <Posts key={i} fetchPosts={fetchPosts} post={postData} />
                     }
                     return null;

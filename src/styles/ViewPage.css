@@ -1,0 +1,316 @@
+.view-page-main{
+    margin: 0px;
+    width: 100%;
+    background-color: #f0f2f5;
+    color: #050505;
+}
+
+.profile-cover-name-main{
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.cover-photo-main{
+    margin-top: -10px;
+    background-color: #000; 
+    width: 100%;
+    height: 350px;
+    background-image: linear-gradient(to top, rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+}
+.cover-photo-main .cover{
+    height: 350px;
+    width: 100%;
+    max-width: 940px;
+    margin: 0px auto;
+    border-radius: 10px;
+}
+.cover-photo-main .cover img{
+    width: 100%;
+    height: 350px;
+    object-fit: fill;
+    border-radius: 10px;
+}
+.view-page-main .profile-name-other{
+    width: 100%;
+    padding: 0px 16px;
+    max-width: 908px;
+    box-sizing: border-box;
+    margin: 0px auto;
+}
+
+.view-page-main .profile-name{
+    width: 100%;
+    height: 145px;
+    padding-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.view-page-main .profile-name .profile-name-div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+.view-page-main .profile-name .profile-name-div >div{
+    height: 170px;
+    width: 170px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-top: -30px;
+    box-sizing: border-box;
+}
+.view-page-main .profile-name .profile-name-div >div img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.view-page-main .profile-name .profile-name-div >div img:hover{
+    filter: brightness(0.9);
+}
+.view-page-main .profile-name .profile-name-div p{
+    margin: 0px;
+    font-size: 38px;
+    font-weight: 700;
+    line-height:40px;
+}
+
+.view-page-main .profile-name .add-edit , .view-page-main .profile-name .subscribe-message-follow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.view-page-main .profile-name .add-edit div , .view-page-main .profile-name .subscribe-message-follow div{
+   height: 36px;
+   padding: 0px 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+   background-color: rgb(228, 230, 235);
+   border-radius: 6px;
+   font-size: 15px;
+   font-weight: 600;
+   cursor: not-allowed;
+   color: #050505;
+}
+.view-page-main .profile-name .add-edit div:hover , .view-page-main .profile-name .subscribe-message-follow div:hover{
+    background-color: #c7c2c2;
+}
+.view-page-main .profile-name-other .other div{
+   height: 60px;
+   border-top: 1px solid rgba(0, 0, 0, 0.3);
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+}
+.view-page-main .profile-name-other .other div span{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    opacity: 0.7;
+    padding: 0px 16px;
+    cursor: not-allowed;
+    line-height: 57px;
+}
+.view-page-main .profile-name-other .other div span:first-child{
+    color: #0866ff;
+    border-bottom: 3px solid #0866ff;
+}
+
+/* into-post container */
+.view-page-main .intro-post{
+   width: 100%;
+   max-width: 908px;
+   margin: 16px auto;
+   display: flex;
+   align-items: flex-start;
+   justify-content: flex-start;
+   gap: 16px;
+}
+.view-page-main .intro-post .intro-friends-photos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 360px;
+}
+.view-page-main .intro-post .intro-friends-photos .intro{
+    width: 100%;
+    /* max-width: 360px; */
+    padding: 16px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .profile >p:first-child,  .view-page-main .intro-post .intro-friends-photos .intro .page >p:first-child{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .profile >p:nth-child(2),  .view-page-main .intro-post .intro-friends-photos .intro .page >p:nth-child(2){
+    margin: 0px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .profile >p:nth-child(3){
+    margin: 0px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+    background-color: rgb(228, 230, 235);
+    border-radius: 10px;
+    cursor: not-allowed;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .profile >p:nth-child(3):hover{
+    background-color: #c7c2c2;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .intro-divs{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .intro-divs .icon{
+    height: 20px;
+    width: 20px;
+    opacity: 0.4;
+}
+.view-page-main .intro-post .intro-friends-photos .intro .intro-divs p{
+    margin: 0px;
+    font-size: 14px;
+    line-height: 20px;
+}
+.view-page-main .intro-post .intro-friends-photos .friends, .view-page-main .intro-post .intro-friends-photos .photos{
+    width: 100%;
+    height: 80px;
+    /* max-width: 360px; */
+    padding: 16px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.view-page-main .intro-post .intro-friends-photos .friends span:first-child, .view-page-main .intro-post .intro-friends-photos .photos span:first-child{
+   font-size: 20px;
+   font-weight: 600;
+}
+.view-page-main .intro-post .intro-friends-photos .friends span:nth-child(2), .view-page-main .intro-post .intro-friends-photos .photos span:nth-child(2){
+   font-size: 17px;
+   font-weight: 400;
+   color: #0866ff;
+}
+.bottom-text{
+    font-size: 14px;
+    font-weight: 500;
+     opacity: 0.5;
+     padding-bottom: 16px;
+}
+.create-post-allposts, .create-post-allposts .profile-posts{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 500px;
+}
+
+
+
+@media only screen and (max-width:600px){
+    .cover-photo-main{
+        background-color:unset; 
+        height: 160px;
+        background-image: unset;
+    }
+    .cover-photo-main .cover{
+        height: 160px;
+        border-radius: unset;
+    }
+    .cover-photo-main .cover img{
+        height: 160px;
+        border-radius: unset;
+    }
+    .view-page-main .profile-name-other{
+        padding: 0px 10px;
+    }
+    .view-page-main .profile-name .profile-name-div >div{
+        height: 152px;
+        width: 152px;
+        padding: 3px;
+        margin-top: -76px;
+    }
+    .view-page-main .profile-name .profile-name-div p{
+        font-size: 28px;
+    }
+    .view-page-main .profile-name-other .other div{
+        height: unset;
+        padding: 6px 0px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .view-page-main .profile-name-other .other div span{
+        padding: 2px 8px;
+        line-height: unset;
+    }
+    .view-page-main .profile-name-other .other div span:first-child{
+        border-bottom: unset;
+    }
+}
+
+
+
+@media only screen and (max-width:900px){
+    .view-page-main .profile-name{
+        height: unset;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .view-page-main .profile-name .profile-name-div{
+        justify-content: center;
+        flex-direction: column;
+    }
+    .view-page-main .profile-name .profile-name-div >div{
+        margin-top: -85px;
+    }
+    .view-page-main .profile-name .profile-name-div p{
+        text-align: center;
+        line-height: 35px;
+    }
+
+
+    /* post-intro style */
+    .view-page-main .intro-post{
+        max-width: 540px;
+        align-items: center; 
+        justify-content: flex-start;
+        flex-direction: column;
+     }
+     .view-page-main .intro-post .intro-friends-photos{
+        max-width: 540px;
+    }
+
+     .create-post-allposts, .create-post-allposts .profile-posts{
+        align-items: center;
+        justify-content: flex-start;
+        max-width: 540px;
+    }
+}

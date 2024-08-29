@@ -5,10 +5,11 @@ import profile from '../images/profile.jpg';
 import { Modal } from '@mui/material';
 import { RxCross2 } from "react-icons/rx";
 import { MdPublic } from "react-icons/md";
+import { useLocation } from 'react-router-dom';
 
 const CreatePost = () => {
     const { darkMode, user, modalOpen, setModalOpen } = useContext(GlobalContext);
-
+    const location = useLocation();
     
     const handleClose = () => setModalOpen(false);
     const handleOpen = () => setModalOpen(true);
@@ -52,7 +53,9 @@ const CreatePost = () => {
         const formdata = new FormData();
         formdata.append("title", "newton");
         formdata.append("content", content);
-        formdata.append("images", file[0], "abc-abc.jpg");
+        if(file[0]){
+            formdata.append("images", file[0], "abc-abc.jpg");
+        }
 
         const requestOptions = {
             method: "POST",
@@ -65,13 +68,16 @@ const CreatePost = () => {
                 if (!response.ok) {
                     // throw new Error(`HTTP error! Status: ${response.status}`);
                     alert(`HTTP error! Status: ${response.status}`);
+                    return null;
                 }
-                return response.json();
+                return response.text();
             })
             .then((result) => {
-                console.log(result);
-                alert('Created Post Successfully!');
-                handleClose();
+                if(result){
+                    console.log(result);
+                    alert('Created Post Successfully!');
+                    handleClose();
+                }
             })
             .catch((error) => {
                 console.error("Error:", error.message);
@@ -89,7 +95,7 @@ const CreatePost = () => {
 
     let profilePic;
     return (
-        <div className={darkMode ? 'dark-background create-post-container' : 'create-post-container'}>
+        <div style={{maxWidth: location.pathname === '/profile'?'540px':'500px'}} className={darkMode ? 'dark-background create-post-container' : 'create-post-container'}>
             <div >
                 <div>
                     <img alt='profile' src={profilePic ? profilePic : profile} />

@@ -14,6 +14,7 @@ import LoginSignup from './LoginSignup.jsx';
 import Navigator from './Navigator.jsx';
 import Menu from '../components/Menu.jsx'
 import CreatePage from './Pages/CreatePage.jsx';
+import ViewPage from './Pages/ViewPage.jsx';
 
 
 const App = () => {
@@ -53,12 +54,14 @@ const App = () => {
               <Route path='/login-signup' element={<LoginSignup/>}/>
               <Route path='/home' element={<Navigator><Home/></Navigator>}/>
               <Route path='/pages/*' element={<Navigator><Pages/></Navigator>}/>
-              <Route path='/pages/create' element={<Navigator><CreatePage/></Navigator>}/>
+              <Route path='/pages/view' element={<Navigator><ViewPage/></Navigator>}/>
+              <Route path='/create_page' element={<Navigator><CreatePage/></Navigator>}/>
               <Route path='/video' element={<Navigator><Vedio/></Navigator>}/>
               <Route path='/marketplace' element={<Navigator><MarketPlace/></Navigator>}/>
               <Route path='/groups' element={<Navigator><Groups/></Navigator>}/>
               <Route path='/friends' element={<Navigator><Friends/></Navigator>}/>
               <Route path='/menu' element={<Navigator><Menu/></Navigator>}/>
+              <Route path='/profile' element={<Navigator><ViewPage/></Navigator>}/>
           </Routes>
        </div>
     </div>
