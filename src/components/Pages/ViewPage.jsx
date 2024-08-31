@@ -93,7 +93,8 @@ const ViewPage = () => {
 
     // Checking if there are any posts that match the condition
     const hasPosts = renderPosts.some(post => post !== null);
- 
+    console.log(renderPosts);
+
   return (
     <div className={darkMode?'dark-parent dark-text view-page-main':'view-page-main'}>
        <div className={darkMode?"dark-background profile-cover-name-main":'profile-cover-name-main'}>

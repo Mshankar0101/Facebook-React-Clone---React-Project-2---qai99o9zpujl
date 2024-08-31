@@ -208,7 +208,7 @@
 
 
 /* friends page style */
-.friends-page, .pages-container{
+.friends-page, .pages-container, .creat-page{
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -216,7 +216,7 @@
     background-color: #f0f2f5;
     color: #050505; 
 }
-.friends-page .friends-sidebar, .pages-container .pages-sidebar{
+.friends-page .friends-sidebar, .pages-container .pages-sidebar, .create-page-sidebar{
    width: 100%;
    max-width: 360px;
    /* height: 100vh; */
@@ -370,6 +370,7 @@
     height: 60px;
     width: 60px;
     border-radius: 50%;
+    background-color: #e0e4eb;
 }
 .pages-card-main .card >div:first-child .profile img{
     height: 60px;

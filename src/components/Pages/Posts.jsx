@@ -229,7 +229,7 @@ const Posts = ({post, fetchPosts}) => {
 
     let profilePic;
   return (
-    <div className={darkMode?'dark-background dark-text facebook-posts':'facebook-posts'}>
+    <div style={{marginBottom:location.pathname === '/profile'?'0px':'16px'}} className={darkMode?'dark-background dark-text facebook-posts':'facebook-posts'}>
         <div className='post-heading-container'>
             
                 <img src={post.author.profileImage?post.author.profileImage : profile} alt={`${post.author.name}'s profile`} />

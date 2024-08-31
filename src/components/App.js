@@ -55,7 +55,7 @@ const App = () => {
               <Route path='/home' element={<Navigator><Home/></Navigator>}/>
               <Route path='/pages/*' element={<Navigator><Pages/></Navigator>}/>
               <Route path='/pages/view' element={<Navigator><ViewPage/></Navigator>}/>
-              <Route path='/create_page' element={<Navigator><CreatePage/></Navigator>}/>
+              <Route path='/pages/create' element={<Navigator><CreatePage/></Navigator>}/>
               <Route path='/video' element={<Navigator><Vedio/></Navigator>}/>
               <Route path='/marketplace' element={<Navigator><MarketPlace/></Navigator>}/>
               <Route path='/groups' element={<Navigator><Groups/></Navigator>}/>

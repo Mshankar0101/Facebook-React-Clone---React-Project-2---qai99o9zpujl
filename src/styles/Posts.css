@@ -22,6 +22,7 @@
     width: 38px;
     border-radius: 50%;
     object-fit: cover;
+    background-color: #e0e4eb;
 }
 .facebook-posts .post-heading-container p:first-child{
     margin: 0px;
