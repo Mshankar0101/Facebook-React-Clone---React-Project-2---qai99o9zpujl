@@ -5,11 +5,12 @@ import profile from '../images/profile.jpg';
 import { Modal } from '@mui/material';
 import { RxCross2 } from "react-icons/rx";
 import { MdPublic } from "react-icons/md";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
     const { darkMode, user, modalOpen, setModalOpen } = useContext(GlobalContext);
     const location = useLocation();
+    const navigate = useNavigate();
     
     const handleClose = () => setModalOpen(false);
     const handleOpen = () => setModalOpen(true);
@@ -87,17 +88,13 @@ const CreatePost = () => {
     }
 
 
-    useEffect(() => {
-        // console.log();
-    }, [])
-
 
 
     let profilePic;
     return (
         <div style={{maxWidth: location.pathname === '/profile'?'540px':'500px'}} className={darkMode ? 'dark-background create-post-container' : 'create-post-container'}>
             <div >
-                <div>
+                <div onClick={()=> navigate('/profile')}>
                     <img alt='profile' src={profilePic ? profilePic : profile} />
                 </div>
                 <div className='createpost-input-div' onClick={handleOpen} style={{ backgroundColor: (darkMode ? 'rgb(80, 86, 92)' : '#f0f2f5') }} >

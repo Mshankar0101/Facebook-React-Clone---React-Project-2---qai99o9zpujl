@@ -36,7 +36,7 @@ const Menu = () => {
         </div>
     </div>
     <div className={darkMode?'dark-parent dark-text menu-page':'menu-page'} >
-         <div className={darkMode?'dark-background dark-text view-profile': 'view-profile'}>
+         <div onClick={()=> navigate('/profile')} className={darkMode?'dark-background dark-text view-profile': 'view-profile'}>
                 <div>
                     <img src={profile} alt='profile'/>
                 </div>

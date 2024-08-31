@@ -47,8 +47,8 @@ const Home = () => {
     <div className={darkMode?'dark-parent facebook-home-page':'facebook-home-page'}>
       
        <div style={{height:`${resolution.height-56}px`, display:(resolution.width < 1100? 'none':'block')}} className={darkMode?'dark-mode-hover home-left-container': 'home-left-container'}>
-          <div>
-            <div onClick={()=> navigate('/profile')} className='profile'>
+          <div onClick={()=> navigate('/profile')}>
+            <div className='profile'>
                 <img alt='profile' src={profilePic? profilePic:profile} />
             </div>
             <p>{user.name}</p>

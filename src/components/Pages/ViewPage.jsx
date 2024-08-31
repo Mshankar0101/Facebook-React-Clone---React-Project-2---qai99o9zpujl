@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import '../../styles/ViewPage.css'
 import { GlobalContext } from '../contexts/Contexts';
 import profile from '../images/profile.jpg';
-import { json, useLocation } from 'react-router-dom';
+import image6 from '../images/story/story6.jpg';
+import { useLocation } from 'react-router-dom';
 import { IoMdAdd, IoIosMail } from "react-icons/io";
 import { MdEdit, MdOutlineAccessTimeFilled } from "react-icons/md";
 import { RiGraduationCapFill } from "react-icons/ri";
@@ -44,22 +45,80 @@ const ViewPage = () => {
     fetchPosts(); 
    },[])
 
+//    accessing id from location's state obj and based on that fetching page contents
+   const {pageid} = location.state || {};
+    const [content , setContent]= useState({});
 
+   const fetchPageContent = (id)=>{
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
+        
+        const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+        };
+        
+        fetch(`https://academics.newtonschool.co/api/v1/facebook/channel/${id}`, requestOptions)
+        .then((response) => response.text())
+        .then((result) =>{
+             const newResult = JSON.parse(result);
+            //  console.log(newResult);
+             if(newResult.status === "success"){
+                setContent(newResult.data);
+             }
+        })
+        .catch((error) => console.error(error));
+   }
+   useEffect(()=>{
+      if(pageid){
+        fetchPageContent(pageid);
+      }
+   },[]);
+   
+
+   useEffect(()=>{
+     console.log(content);
+   },[])
+  
+
+    // Mapping through posts and checking if the post's author ID matches the user ID
+    let renderPosts = posts.map((postData, i) => {
+        if (postData.author._id === user.id) {
+            return <Posts key={i} fetchPosts={fetchPosts} post={postData} />;
+        }
+        return null;
+    });
+
+    // Checking if there are any posts that match the condition
+    const hasPosts = renderPosts.some(post => post !== null);
+ 
   return (
     <div className={darkMode?'dark-parent dark-text view-page-main':'view-page-main'}>
        <div className={darkMode?"dark-background profile-cover-name-main":'profile-cover-name-main'}>
            <div className='cover-photo-main'>
                <div className='cover'>
-                  <img src={profile} alt='cover-photo'/>
+                  {
+                    location.pathname ==='/profile'?
+                    <img src={image6} alt='cover-photo'/>
+                    :
+                    <img src={Object.keys(content).length !== 0? content.image.replace("cloudflare-ipfs.com","dweb.link"):'/'} alt='cover-photo'/>
+                  }
                </div>
            </div>
            <div className='profile-name-other'>
                <div className='profile-name'>
                    <div className='profile-name-div'>
                         <div className={darkMode?'dark-background':''}>
-                            <img src={profile} alt='profile-img'/>
+                            {
+                                location.pathname ==='/profile'?
+                                <img src={profile} alt='profile-img'/>
+                                :
+                                <img src={Object.keys(content).length !== 0? content.image.replace("cloudflare-ipfs.com","dweb.link"):'/'} alt='profile-img'/>
+                            }
                         </div>
-                        <p>Madhu Shankar</p>
+                        <p>{content.name || user.name}</p>
                    </div>
                    {
                     location.pathname === '/profile' ? 
@@ -162,36 +221,37 @@ const ViewPage = () => {
                         :
                         <div className='page'>
                             <p>Intro</p>
-                            <p>description</p>
+                            <p>{content.description}</p>
                             <div className='intro-divs'>
                                   <FaUser className='icon' />
-                                  <p>owner.name</p>
+                                  <p>{Object.keys(content).length !== 0 && content.owner["name"]}</p>
                             </div>
                             <div className='intro-divs'>
-                                       {/* {
-                                            owner.gender === 'male'?
-                                            <IoIosMale className='icon' />
-                                            :
-                                            <IoFemaleOutline className='icon' />
-                                        } */}
-                                  <p>owner.gender</p>
+                                    {Object.keys(content).length !== 0 && (
+                                        content.owner.gender === 'male' ? 
+                                        <IoIosMale className='icon' /> 
+                                        : 
+                                        <IoFemaleOutline className='icon' />
+                                    )}
+
+                                  <p>{Object.keys(content).length !== 0 && content.owner["gender"]}</p>
                             </div>
                             <div className='intro-divs'>
                                   <IoIosMail className='icon' />
-                                  <p>owner.email</p>
+                                  <p>{Object.keys(content).length !== 0 && content.owner["email"]}</p>
                             </div>
                             <div className='intro-divs'>
                                  <FaPhoneAlt className='icon' />
-                                  <p>phone</p>
+                                  <p>{Object.keys(content).length !== 0 && content.owner["phone"]}</p>
                             </div>
                             <div className='intro-divs'>
                                   <MdOutlineAccessTimeFilled className='icon' />
-                                  <p>createdAt</p>
+                                  <p>{content.createdAt}</p>
                             </div>
                             <div className='intro-divs'>
                                   <FaLocationDot className='icon' />
                                   <p>848 Jefferey Forest, South Jaren, Maryland, Finland</p>
-                            </div>
+                            </div> 
                         </div>
                     }
                 </div>
@@ -219,17 +279,24 @@ const ViewPage = () => {
                 {
                     location.pathname === '/profile'?
                         <div className='profile-posts'>
-
-                            {posts.map((postData,i)=>{   
+                            {/* {
+                               posts.map((postData,i)=>{   
                                     if( postData.author._id === user.id){
                                         return <Posts key={i} fetchPosts={fetchPosts} post={postData} />
                                     }
                                     return null;
                                 })
-
-                            }
+                                    // <h2 style={{textAlign:'center',width:'100%'}}> You have not posted anything yet.</h2>
+                            } */}
+                            {hasPosts ? (
+                                renderPosts
+                            ) : (
+                                <h2 style={{ textAlign: 'center', width: '100%' }}>
+                                    You have not posted anything yet.
+                                </h2>
+                             )}
                         </div>
-                    :null
+                    :<h2 style={{textAlign:'center', width:"100%"}}>There is not any post on this page!!</h2>
                 }
               
             </div>

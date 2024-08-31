@@ -486,7 +486,12 @@ const Header = () => {
             rightIconsClick.account?
             <div ref={accountRef} className={darkMode? 'dark-background-popup dark-text header-right-account':'header-right-account'}>
                  <div className={darkMode?'dark-background profile-seeall':'profile-seeall'}>
-                    <div>
+                    <div onClick={()=>{
+                        setRightIconsClick((prev)=>{
+                            return {...prev, account: false}
+                        })
+                        navigate('/profile')
+                    }}>
                         <div>
                            <img alt='profile' src={profilePic? profilePic: profile} />
                         </div>

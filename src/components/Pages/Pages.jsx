@@ -27,7 +27,7 @@ const Pages = () => {
     .then((response) => response.text())
     .then((result) =>{
         const newResult = JSON.parse(result);
-        console.log("comments", newResult.data);
+        // console.log("pages", newResult.data);
         setPages(newResult.data);
     })
     .catch((error) => console.error(error));
@@ -37,6 +37,14 @@ const Pages = () => {
     fetchPages();
   },[]);
 
+
+  // handling navigation to view page
+  const handleViewPage = (id)=>{
+    const data = {
+      pageid : id
+    }
+    navigate("view", {state:data});
+  }
 
 
 
@@ -102,7 +110,7 @@ const Pages = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <div>
+                                    <div onClick={()=> handleViewPage(page._id)}>
                                       <RiPagesFill className='page-card-icon'/>
                                       <span>View page</span>
                                     </div>
