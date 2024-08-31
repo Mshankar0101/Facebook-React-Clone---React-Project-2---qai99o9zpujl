@@ -17,16 +17,15 @@ import Posts from './Posts';
 const ViewPage = () => {
    const {darkMode, user}= useContext(GlobalContext);
    const location = useLocation();
-   const details = JSON.parse(localStorage.getItem('signUpUser'));
+   const details = JSON.parse(localStorage.getItem('signUpUser')) || {};
 
    //   post rendering logic
    const [posts, setPosts] = useState([]);
    const fetchPosts = ()=>{
         const myHeaders = new Headers();
         myHeaders.append("projectID", "ktu17k7gadkn");
-        
         const requestOptions = {
-        method: "GET",
+        method: "GET", 
         headers: myHeaders,
         redirect: "follow"
         };
