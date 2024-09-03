@@ -14,6 +14,7 @@ import { PiUserSwitchFill } from "react-icons/pi";
 import { RiSettings5Fill, RiFeedbackFill } from "react-icons/ri";
 import { MdArrowForwardIos} from "react-icons/md";
 import { IoMdHelpCircle } from "react-icons/io";
+import '../styles/SearchPage.css';
 
 
 const Header = () => {
@@ -190,6 +191,66 @@ const Header = () => {
     }
 
 
+    // search box implimentation
+    const [filteredArray, setFilteredArray]= useState([]);
+    const [fetchedResult , setFetchedResult]= useState([]);
+
+     useEffect(()=>{
+        fetchUsers();
+     },[])
+
+    const fetchUsers = ()=>{
+        const myHeaders = new Headers();
+        myHeaders.append("projectID", "ktu17k7gadkn");
+        myHeaders.append("Authorization", `Bearer ${user.fbToken}`);
+
+        const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+        };
+
+        fetch("https://academics.newtonschool.co/api/v1/facebook/user", requestOptions)
+        .then((response) => response.text())
+        .then((result) =>{ 
+            const parsedResult = JSON.parse(result);
+            // console.log(parsedResult);
+
+           if(parsedResult.status === "success"){
+               setFetchedResult(parsedResult.data);
+           }else{
+               setFetchedResult([]);
+           }
+        })
+        .catch((error) => console.error(error));
+    }
+
+    const handleSearch = (e)=>{
+        const value = e.target.value;
+        if(value !== ''){
+            const filteredResult = fetchedResult.filter((user)=>{
+                return user.name.toLowerCase().includes(value.toLowerCase());
+             })
+                  console.log("filtered", filteredResult);
+                  setFilteredArray(filteredResult);
+          
+        }else{
+            setFilteredArray([]);
+        }
+        
+    }
+
+
+    // handling navigation to view searched user profile
+    const handleViewUser = (id)=>{
+        setSearchboxOpen(false);
+        const data = {
+        pageid : id
+        }
+        navigate("/user", {state:data});
+    }
+
+
 
     let profilePic;
 
@@ -232,7 +293,8 @@ const Header = () => {
                     <IoArrowBackOutline onClick={()=> setSearchboxOpen(false)} className='back-icon' />
                     
                     <TextField
-                        // id="input-with-icon-textfield"
+                        // value={searchedValue}
+                        onChange={handleSearch}
                         placeholder='Search Facebook'
                         sx={{
                             width: '100%',
@@ -249,6 +311,24 @@ const Header = () => {
                         }}
                         variant="outlined"
                     />
+                </div>
+                <div className="search-dropdown-list">
+                              
+                    {
+                        filteredArray.map((item, index) => {
+                            return(
+
+                              <div onClick={()=>handleViewUser(item._id)} key={index} className="fetched-user">
+                                  <div className='search-profile'>
+                                     <img src={item.profileImage}/>
+                                  </div>
+                                  <p>{item.name}</p>
+                              </div>
+                            )
+                        })
+                       
+                    }
+
                 </div>
             </div>
           }

@@ -18,7 +18,7 @@ import ViewPage from './Pages/ViewPage.jsx';
 
 
 const App = () => {
-  const {resolution} = useContext(GlobalContext);
+  const {resolution, darkMode} = useContext(GlobalContext);
   const location = useLocation();
 
    // handles changes in localStorage across tabs
@@ -39,7 +39,7 @@ const App = () => {
 
 
   return (
-    <div className='app'>
+    <div style={{backgroundColor:darkMode?'#18191A':'#f0f2f5'}} className='app'>
       {
         resolution.width < 850 ?
         <MobileHeader/>
@@ -62,6 +62,7 @@ const App = () => {
               <Route path='/friends' element={<Navigator><Friends/></Navigator>}/>
               <Route path='/menu' element={<Navigator><Menu/></Navigator>}/>
               <Route path='/profile' element={<Navigator><ViewPage/></Navigator>}/>
+              <Route path='/user' element={<Navigator><ViewPage/></Navigator>}/>
           </Routes>
        </div>
     </div>

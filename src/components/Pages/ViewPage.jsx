@@ -11,10 +11,11 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaBirthdayCake, FaUser, FaPhoneAlt } from "react-icons/fa";
 import { IoIosMale } from "react-icons/io";
 import { IoFemaleOutline } from "react-icons/io5";
+import { IoAlertCircle } from "react-icons/io5";
 import CreatePost from './CreatePost';
 import Posts from './Posts';
 
-const ViewPage = () => {
+const ViewPage = ({image, pageDetails}) => {
    const {darkMode, user}= useContext(GlobalContext);
    const location = useLocation();
    const details = JSON.parse(localStorage.getItem('signUpUser')) || {};
@@ -41,12 +42,14 @@ const ViewPage = () => {
    }
 
    useEffect(()=>{
-    fetchPosts(); 
+        if(location.pathname === "/profile"){
+            fetchPosts(); 
+        }
    },[])
 
 //    accessing id from location's state obj and based on that fetching page contents
    const {pageid} = location.state || {};
-    const [content , setContent]= useState({});
+    const [content , setContent]= useState({address:[{"street": "750 Barton Motorway","state": "Nevada","country": "Togo"}]});
 
    const fetchPageContent = (id)=>{
         const myHeaders = new Headers();
@@ -59,27 +62,39 @@ const ViewPage = () => {
         redirect: "follow"
         };
         
-        fetch(`https://academics.newtonschool.co/api/v1/facebook/channel/${id}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) =>{
-             const newResult = JSON.parse(result);
-            //  console.log(newResult);
-             if(newResult.status === "success"){
-                setContent(newResult.data);
-             }
-        })
-        .catch((error) => console.error(error));
+        if(location.pathname === "/user"){
+            fetch(`https://academics.newtonschool.co/api/v1/facebook/user/${id}`, requestOptions)
+            .then((response) => response.text())
+            .then((result) =>{
+                 const newResult = JSON.parse(result);
+                //  console.log(newResult);
+                 if(newResult.status === "success"){
+                     setContent(newResult.data);
+                 }
+            })
+            .catch((error) => console.error(error));
+        }else{
+
+            fetch(`https://academics.newtonschool.co/api/v1/facebook/channel/${id}`, requestOptions)
+            .then((response) => response.text())
+            .then((result) =>{
+                 const newResult = JSON.parse(result);
+                //  console.log(newResult);
+                 if(newResult.status === "success"){
+                    setContent(newResult.data);
+                 }
+            })
+            .catch((error) => console.error(error));
+        }
    }
    useEffect(()=>{
-      if(pageid){
-        fetchPageContent(pageid);
-      }
-   },[]);
+    if(location.pathname === "/user" || location.pathname === "/pages/view"){ 
+        if(pageid){
+          fetchPageContent(pageid);
+        }
+    }
+   },[location.state]);
    
-
-   useEffect(()=>{
-     console.log(content);
-   },[])
   
 
     // Mapping through posts and checking if the post's author ID matches the user ID
@@ -92,7 +107,22 @@ const ViewPage = () => {
 
     // Checking if there are any posts that match the condition
     const hasPosts = renderPosts.some(post => post !== null);
-    console.log(renderPosts);
+    // console.log(renderPosts);
+
+
+
+
+    // style for create page
+    const style = {
+        height: 'unset',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        gap: '20px'
+    }
+    const nameDiv = {
+        justifyContent: 'center',
+        flexDirection: 'column'
+    }
 
   return (
     <div className={darkMode?'dark-parent dark-text view-page-main':'view-page-main'}>
@@ -103,22 +133,40 @@ const ViewPage = () => {
                     location.pathname ==='/profile'?
                     <img src={image6} alt='cover-photo'/>
                     :
-                    <img src={Object.keys(content).length !== 0? content.image.replace("cloudflare-ipfs.com","dweb.link"):'/'} alt='cover-photo'/>
+                    location.pathname ==='/pages/create'?
+                    <img  src={image || '/'} alt='cover-photo'/>
+                    :
+                    location.pathname ==='/user'?
+                    <img src={content.profileImage} alt='cover-photo'/>
+                    :
+                    <img src={Object.keys(content).length > 1? content.image?.replace("cloudflare-ipfs.com","dweb.link") :'/'} alt='cover-photo'/>
+
                   }
                </div>
            </div>
            <div className='profile-name-other'>
-               <div className='profile-name'>
-                   <div className='profile-name-div'>
-                        <div className={darkMode?'dark-background':''}>
+               <div style={location.pathname ==='/pages/create'? style : {}} className='profile-name'>
+                   <div style={location.pathname ==='/pages/create'? nameDiv : {}} className='profile-name-div'>
+                        <div style={location.pathname ==='/pages/create' || location.pathname ==='/user'? {backgroundColor:'#e0e4eb',marginTop: '-85px'}:{}} className={darkMode?'dark-background':''}>
                             {
                                 location.pathname ==='/profile'?
                                 <img src={profile} alt='profile-img'/>
                                 :
-                                <img src={Object.keys(content).length !== 0? content.image.replace("cloudflare-ipfs.com","dweb.link"):'/'} alt='profile-img'/>
+                                location.pathname ==='/pages/create'?
+                                <img  src={image || '/'} alt='profile-img'/>
+                                :
+                                location.pathname ==='/user'?
+                                <img src={content.profileImage} alt='profile-img'/>
+                                :
+                                <img src={Object.keys(content).length > 1? content.image?.replace("cloudflare-ipfs.com","dweb.link"):'/' } alt='profile-img'/>
                             }
                         </div>
-                        <p>{content.name || user.name}</p>
+                        {
+                             location.pathname ==='/pages/create'?
+                             <p style={{textAlign:'center',lineHeight:'35px'}}>{pageDetails.pagename}</p>
+                             :
+                             <p>{location.pathname ==='/profile'? user.name : content.name }</p>
+                        }
                    </div>
                    {
                     location.pathname === '/profile' ? 
@@ -219,30 +267,82 @@ const ViewPage = () => {
                             }
                         </div>
                         :
+                        location.pathname ==='/pages/create'?
+                        <div className='page'>
+                            <p>Intro</p>
+                            <p>{pageDetails.bio}</p>
+                            <div className='intro-divs'>
+                                  <FaUser className='icon' />
+                                  <p>0 Followers</p>
+                            </div>
+                            <div className='intro-divs'>
+                                  <IoAlertCircle className='icon' />
+                                  <p>Page &bull; {pageDetails.category ||  "Category"}</p>
+                            </div>
+                        </div>
+                        :
+                        location.pathname === "/user"?
                         <div className='page'>
                             <p>Intro</p>
                             <p>{content.description}</p>
                             <div className='intro-divs'>
                                   <FaUser className='icon' />
-                                  <p>{Object.keys(content).length !== 0 && content.owner["name"]}</p>
+
+                                  <p>{Object.keys(content).length > 1 && content.name}</p>
                             </div>
                             <div className='intro-divs'>
-                                    {Object.keys(content).length !== 0 && (
+                                    {Object.keys(content).length > 1  && (
+                                        content.gender === 'male' ? 
+                                        <IoIosMale className='icon' /> 
+                                        : 
+                                        <IoFemaleOutline className='icon' />
+                                    )}
+
+                                  <p>{Object.keys(content).length > 1  && content.gender}</p>
+                            </div>
+                            <div className='intro-divs'>
+                                  <IoIosMail className='icon' />
+                                  <p>{Object.keys(content).length > 1 && content.email}</p>
+                            </div>
+                            <div className='intro-divs'>
+                                 <FaPhoneAlt className='icon' />
+                                  <p>{Object.keys(content).length > 1 && content.phone}</p>
+                            </div>
+                            <div className='intro-divs'>
+                                  <MdOutlineAccessTimeFilled className='icon' />
+                                  <p>{content.createdAt}</p>
+                            </div>
+                            <div className='intro-divs'>
+                                  <FaLocationDot className='icon' />
+                                  <p>{Object.keys(content).length > 1 && `${content.address[0].street}, ${content.address[0].state}, ${content.address[0].country}` }</p>
+                            </div> 
+                        </div>
+                           :
+                        <div className='page'>
+                            <p>Intro</p>
+                            <p>{content.description}</p>
+                            <div className='intro-divs'>
+                                  <FaUser className='icon' />
+
+                                  <p>{Object.keys(content).length > 1 && content.owner["name"]}</p>
+                            </div>
+                            <div className='intro-divs'>
+                                    {Object.keys(content).length > 1 && (
                                         content.owner.gender === 'male' ? 
                                         <IoIosMale className='icon' /> 
                                         : 
                                         <IoFemaleOutline className='icon' />
                                     )}
 
-                                  <p>{Object.keys(content).length !== 0 && content.owner["gender"]}</p>
+                                  <p>{Object.keys(content).length > 1 && content.owner["gender"]}</p>
                             </div>
                             <div className='intro-divs'>
                                   <IoIosMail className='icon' />
-                                  <p>{Object.keys(content).length !== 0 && content.owner["email"]}</p>
+                                  <p>{Object.keys(content).length > 1 && content.owner["email"]}</p>
                             </div>
                             <div className='intro-divs'>
                                  <FaPhoneAlt className='icon' />
-                                  <p>{Object.keys(content).length !== 0 && content.owner["phone"]}</p>
+                                  <p>{Object.keys(content).length > 1 && content.owner["phone"]}</p>
                             </div>
                             <div className='intro-divs'>
                                   <MdOutlineAccessTimeFilled className='icon' />
@@ -296,7 +396,7 @@ const ViewPage = () => {
                                 </h2>
                              )}
                         </div>
-                    :<h2 style={{textAlign:'center', width:"100%"}}>There is not any post on this page!!</h2>
+                    :<h2  style={{textAlign:'center', width:"100%", display:location.pathname === '/pages/create'? 'none':'block'}}>{location.pathname=== '/user'? "There is not any post on this profile!!":"There is not any post on this page!!"}</h2>
                 }
               
             </div>

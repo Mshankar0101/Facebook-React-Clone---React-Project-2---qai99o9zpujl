@@ -32,7 +32,7 @@
     left: 0;
     z-index: 999;
     width: 360px;
-    height: 250px;
+    height: 300px;
     padding: 8px 15px;
     background-color: #fff;
     /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); */
@@ -40,7 +40,12 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
-    
+    /* overflow: hidden; */
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.search-feild-container::-webkit-scrollbar{
+    display: none;
 }
 .search-feild-container > div:first-child{
     width: 100%;

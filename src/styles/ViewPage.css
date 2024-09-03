@@ -113,18 +113,19 @@
     opacity: 0.7;
     padding: 0px 16px;
     cursor: not-allowed;
-    line-height: 57px;
+    
 }
 .view-page-main .profile-name-other .other div span:first-child{
     color: #0866ff;
     border-bottom: 3px solid #0866ff;
+    line-height: 57px;
 }
 
 /* into-post container */
 .view-page-main .intro-post{
    width: 100%;
    max-width: 908px;
-   margin: 16px auto;
+   margin: 16px auto 0px;
    display: flex;
    align-items: flex-start;
    justify-content: flex-start;
@@ -268,9 +269,9 @@
     }
     .view-page-main .profile-name-other .other div span{
         padding: 2px 8px;
-        line-height: unset;
     }
     .view-page-main .profile-name-other .other div span:first-child{
+        line-height: unset;
         border-bottom: unset;
     }
 }
