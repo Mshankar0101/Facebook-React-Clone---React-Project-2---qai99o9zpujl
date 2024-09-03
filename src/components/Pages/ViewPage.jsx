@@ -326,7 +326,7 @@ const ViewPage = ({image, pageDetails}) => {
                             </div>
                             <div className='intro-divs'>
                                   <FaLocationDot className='icon' />
-                                  <p>{Object.keys(content).length > 1 && `${content.address[0].street}, ${content.address[0].state}, ${content.address[0].country}` }</p>
+                                  <p>{Object.keys(content).length > 1 && `750 Barton Motorway, Kannapolis, Nevada` }</p>
                             </div> 
                         </div>
                            :
