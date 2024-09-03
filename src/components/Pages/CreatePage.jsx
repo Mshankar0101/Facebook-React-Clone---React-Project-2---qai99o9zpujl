@@ -104,12 +104,12 @@ const CreatePage = () => {
 
   return (
     <div style={{height:resolution.width> 900?`${resolution.height - 56}px`:"unset"}}  className={darkMode?'dark-parent dark-text create-page':'create-page'}>
-        <div style={{height:resolution.width> 900?`${resolution.height - 56}px`:"unset"}} className={darkMode?'.dark-header-style create-page-sidebar':'create-page-sidebar'}>
+        <div style={{height:resolution.width> 900?`${resolution.height - 56}px`:"unset"}} className={darkMode?'dark-header-style create-page-sidebar':'create-page-sidebar'}>
             <p>Pages &gt; Create a page</p>
             <p>Create a Page</p>
             <p>Your Page is where people go to learn more about you. Make sure yours has all the information they may need.</p>
             <div className='scroll-div'>
-                   <TextField fullWidth id="outlined-basic" placeholder="Page name (required)" variant="outlined" 
+                   <TextField type='text' fullWidth id="outlined-basic" placeholder="Page name (required)" variant="outlined" 
                        value={pageDetails.pagename} 
                        onChange={(e)=>{
                         setPageDetails({...pageDetails, pagename:e.target.value})
@@ -137,7 +137,7 @@ const CreatePage = () => {
                      />
                      <p className='input-description'>Use the name of your business, brand or organization, or a name that helps explain your Page.</p>
 
-                   <TextField fullWidth id="outlined-basic" placeholder="Category (required)" variant="outlined" 
+                   <TextField type='text' fullWidth id="outlined-basic" placeholder="Category (required)" variant="outlined" 
                        value={pageDetails.category } 
                        onChange={(e)=>{
                         setPageDetails({...pageDetails, category:e.target.value})

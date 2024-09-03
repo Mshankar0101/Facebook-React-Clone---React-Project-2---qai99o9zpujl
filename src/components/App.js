@@ -15,6 +15,7 @@ import Navigator from './Navigator.jsx';
 import Menu from '../components/Menu.jsx'
 import CreatePage from './Pages/CreatePage.jsx';
 import ViewPage from './Pages/ViewPage.jsx';
+import Search from './Pages/Search.jsx';
 
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
               <Route path='/menu' element={<Navigator><Menu/></Navigator>}/>
               <Route path='/profile' element={<Navigator><ViewPage/></Navigator>}/>
               <Route path='/user' element={<Navigator><ViewPage/></Navigator>}/>
+              <Route path='/search' element={<Navigator><Search/></Navigator>}/>
           </Routes>
        </div>
     </div>

@@ -8,7 +8,7 @@ import { IoMdAdd, IoIosMail } from "react-icons/io";
 import { MdEdit, MdOutlineAccessTimeFilled } from "react-icons/md";
 import { RiGraduationCapFill } from "react-icons/ri";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaBirthdayCake, FaUser, FaPhoneAlt } from "react-icons/fa";
+import { FaBirthdayCake, FaUser, FaPhoneAlt, FaUserPlus } from "react-icons/fa";
 import { IoIosMale } from "react-icons/io";
 import { IoFemaleOutline } from "react-icons/io5";
 import { IoAlertCircle } from "react-icons/io5";
@@ -180,6 +180,18 @@ const ViewPage = ({image, pageDetails}) => {
                                 <span>Edit profile</span>
                             </div>
                         </div>
+                        :
+                        location.pathname === '/user' ? 
+                            <div className='add-edit'>
+                                <div>
+                                    <FaUserPlus style={{height:'18px', width:"18px"}} />
+                                    <span>Add friend</span>
+                                </div> 
+                                <div>
+                                    <img src='https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/YjBUcSAL8TC.png'/>
+                                    <span>Message</span>
+                                </div>
+                            </div>
                         :
                         <div className='subscribe-message-follow'>
                             <div>

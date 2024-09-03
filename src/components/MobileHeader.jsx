@@ -32,7 +32,7 @@ const MobileHeader = () => {
     },[location.pathname]);
     
   return (
-    <div style={{display:(location.pathname === '/login-signup'?'none':location.pathname === '/menu'?'none':'block')}} className={darkMode?'dark-header-style header-mobile ':'header-mobile'}>
+    <div style={{display:(location.pathname === '/login-signup' || location.pathname === '/search'?'none':location.pathname === '/menu'?'none':'block')}} className={darkMode?'dark-header-style header-mobile ':'header-mobile'}>
           <div className='logo-search-menu'>
                 <div>
                     <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/48MsiA6m666.png'  alt='fb-logo' />

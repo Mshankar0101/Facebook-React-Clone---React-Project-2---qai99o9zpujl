@@ -288,7 +288,7 @@ const Header = () => {
             variant="outlined"
           />
           {searchboxOpen && 
-            <div ref={inputRef} className={darkMode?'search-feild-container dark-background-popup': 'search-feild-container'}>
+            <div ref={inputRef} className={darkMode?'search-feild-container dark-text dark-background-popup': 'search-feild-container'}>
                 <div>
                     <IoArrowBackOutline onClick={()=> setSearchboxOpen(false)} className='back-icon' />
                     
@@ -312,23 +312,25 @@ const Header = () => {
                         variant="outlined"
                     />
                 </div>
-                <div className="search-dropdown-list">
-                              
-                    {
-                        filteredArray.map((item, index) => {
-                            return(
+                <div className='scroll'>
+                    <div className="search-dropdown-list">
+                                
+                        {
+                            filteredArray.map((item, index) => {
+                                return(
 
-                              <div onClick={()=>handleViewUser(item._id)} key={index} className="fetched-user">
-                                  <div className='search-profile'>
-                                     <img src={item.profileImage}/>
-                                  </div>
-                                  <p>{item.name}</p>
-                              </div>
-                            )
-                        })
-                       
-                    }
+                                <div onClick={()=>handleViewUser(item._id)} key={index} className="fetched-user">
+                                    <div className='search-profile'>
+                                        <img src={item.profileImage}/>
+                                    </div>
+                                    <p>{item.name}</p>
+                                </div>
+                                )
+                            })
+                        
+                        }
 
+                    </div>
                 </div>
             </div>
           }
