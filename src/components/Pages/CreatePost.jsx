@@ -7,7 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import { MdPublic } from "react-icons/md";
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const CreatePost = () => {
+const CreatePost = ({fetchPosts}) => {
     const { darkMode, user, modalOpen, setModalOpen } = useContext(GlobalContext);
     const location = useLocation();
     const navigate = useNavigate();
@@ -78,6 +78,7 @@ const CreatePost = () => {
                     console.log(result);
                     alert('Created Post Successfully!');
                     handleClose();
+                    fetchPosts();
                 }
             })
             .catch((error) => {

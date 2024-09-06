@@ -385,7 +385,7 @@ const ViewPage = ({image, pageDetails}) => {
             <div className="create-post-allposts">
                 {
                     location.pathname === '/profile'?
-                       <CreatePost/>
+                       <CreatePost fetchPosts={fetchPosts}/>
                     :null
                 }
                 {

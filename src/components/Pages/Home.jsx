@@ -159,7 +159,7 @@ const Home = () => {
               <div className='story'>
                  <Story/>
               </div>
-              <CreatePost/>
+              <CreatePost fetchPosts={fetchPosts} />
               <div className='posts'>
                 {posts.map((postData,i)=>{   
                     if(postData.images[0] && postData.author.profileImage !== null || postData.author._id === user.id){
